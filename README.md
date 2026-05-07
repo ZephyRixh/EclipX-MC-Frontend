@@ -19,22 +19,6 @@ Welcome to the official web repository for this modern store frontend. This proj
 - **CSS3:** Custom properties (variables), Flexbox, Grid, and advanced animations.
 - **Vanilla JavaScript:** Zero dependencies, modular initialization, and high-performance DOM manipulation.
 
-## 📂 Project Structure
-
-```text
-lazy/
-├── assets/
-│   ├── css/
-│   │   └── styles.css      # Core styles and animations
-│   ├── fonts/              # Custom brand fonts
-│   ├── images/             # Logos, backgrounds, and team photos
-│   └── js/
-│       └── script.js       # Dynamic behavior and interactivity
-├── index.html              # Main entry point
-├── run-preview.bat         # Local preview utility script
-└── README.md               # You are here!
-```
-
 ## 🏁 Getting Started
 
 ### Prerequisites
