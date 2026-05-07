@@ -3061,6 +3061,9 @@ input:checked + .slider:before {
   .spotlight-nav-item i {
     display: none;
   }
+  .nav-actions {
+    display: flex !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3079,6 +3082,7 @@ input:checked + .slider:before {
   .nav-actions {
     padding-left: 6px;
     margin-left: 6px;
+    display: flex !important;
   }
 }
 
