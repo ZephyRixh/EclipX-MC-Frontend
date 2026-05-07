@@ -258,18 +258,6 @@ section { padding: 50px 5vw; position: relative; }
   --ambience-x: 0px;
   --spotlight-color: rgba(255, 255, 255, 0.12);
   --ambience-color: rgba(255, 255, 255, 0.8);
-  /* Scroll support for mobile */
-  max-width: calc(100vw - 120px);
-  overflow-x: auto;
-  -ms-overflow-style: none;
-}
-
-.spotlight-nav::-webkit-scrollbar {
-  display: none;
-}
-
-.spotlight-nav::-webkit-scrollbar {
-  display: none;
 }
 
 .spotlight-nav-list {
