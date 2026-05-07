@@ -61,4 +61,3 @@ For server-related support or questions about the store:
 - **Email:** [contact@eclipxmc.net](mailto:contact@eclipxmc.net)
 
 ---
-*Created with ❤️ for the EclipX MC Community.*
