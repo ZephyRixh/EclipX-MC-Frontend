@@ -1103,6 +1103,31 @@ section { padding: 50px 5vw; position: relative; }
   margin-right: 4px;
 }
 
+.checkout-info {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-md);
+  text-align: left;
+}
+
+.checkout-info p {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.checkout-info ol {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.checkout-info li {
+  margin-bottom: 4px;
+}
+
 .cart-empty {
   text-align: center;
   padding: 80px 40px;
