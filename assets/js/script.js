@@ -1,5 +1,11 @@
 // EclipX MC Store JS
 
+function escapeHTML(str) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 // NAVBAR SCROLL
 function initNavbarScroll() {
   const navbar = document.querySelector('.navbar');
@@ -345,22 +351,22 @@ function renderCartPage() {
   if (summarySection) summarySection.style.display = 'block';
 
   cartItemsContainer.innerHTML = items.map(item => `
-    <article class="cart-item" data-product-id="${item.id}">
-      <img class="cart-item-img" src="${item.image}" alt="${item.title}">
+    <article class="cart-item" data-product-id="${escapeHTML(item.id)}">
+      <img class="cart-item-img" src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">
       <div class="cart-item-body">
         <div>
-          <strong class="cart-item-title">${item.title}</strong>
-          <div class="cart-item-meta">${formatCurrency(item.price)} each</div>
+          <strong class="cart-item-title">${escapeHTML(item.title)}</strong>
+          <div class="cart-item-meta">${escapeHTML(formatCurrency(item.price))} each</div>
         </div>
         <div class="cart-item-controls">
           <div class="cart-quantity">
             <button type="button" class="qty-button" data-action="decrease">-</button>
-            <span class="qty-value">${item.quantity}</span>
+            <span class="qty-value">${escapeHTML(String(item.quantity))}</span>
             <button type="button" class="qty-button" data-action="increase">+</button>
           </div>
           <div class="total-row">
             <span>Total</span>
-            <strong>${formatCurrency(item.price * item.quantity)}</strong>
+            <strong>${escapeHTML(formatCurrency(item.price * item.quantity))}</strong>
           </div>
         </div>
       </div>
@@ -545,10 +551,10 @@ function initLiveActivity() {
     const toast = document.createElement('div');
     toast.className = 'purchase-toast';
     toast.innerHTML = `
-      <img src="https://mc-heads.net/avatar/${order.User.username}/40" alt="${order.User.username}" class="purchase-toast-avatar">
+      <img src="https://mc-heads.net/avatar/${encodeURIComponent(order.User.username)}/40" alt="${escapeHTML(order.User.username)}" class="purchase-toast-avatar">
       <div class="purchase-toast-content">
-        <span class="purchase-toast-user">${order.User.username}</span>
-        <span class="purchase-toast-text">Just purchased <strong>${firstItem}</strong></span>
+        <span class="purchase-toast-user">${escapeHTML(order.User.username)}</span>
+        <span class="purchase-toast-text">Just purchased <strong>${escapeHTML(firstItem)}</strong></span>
         <span class="purchase-toast-time">Just now</span>
       </div>
     `;
@@ -599,6 +605,16 @@ function initLightbox() {
   };
 }
 
+function initFeaturedCards() {
+  document.querySelectorAll('[data-featured-category]').forEach(card => {
+    card.addEventListener('click', () => {
+      const category = card.getAttribute('data-featured-category');
+      const link = document.querySelector(`.sidebar-link[data-category-path="${category}"]`);
+      if (link) link.click();
+    });
+  });
+}
+
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -630,6 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductModal();
   initLiveActivity();
   initServerStatus();
+  initFeaturedCards();
   initBackToTop();
 });
 
@@ -670,10 +687,10 @@ function switchStoreTab(el, category, updateUrl = true) {
   setTimeout(() => {
     if (headerH1) headerH1.textContent = category;
     if (headerP) {
-      if (category.includes('Ranks')) headerP.innerHTML = 'Get yourself some awesome ranks! All ranks purchased here will apply only in our gamemode.';
-      else if (category.includes('Coins')) headerP.innerHTML = 'Get yourself some coins to get awesome keys & perks from coinshop.';
-      else if (category.includes('Keys')) headerP.innerHTML = 'Unlock powerful rewards with our custom crate keys. Each key provides a chance for rare items!';
-      else headerP.innerHTML = `Browse our selection of ${category} and enhance your gameplay!`;
+      if (category.includes('Ranks')) headerP.textContent = 'Get yourself some awesome ranks! All ranks purchased here will apply only in our gamemode.';
+      else if (category.includes('Coins')) headerP.textContent = 'Get yourself some coins to get awesome keys & perks from coinshop.';
+      else if (category.includes('Keys')) headerP.textContent = 'Unlock powerful rewards with our custom crate keys. Each key provides a chance for rare items!';
+      else headerP.textContent = `Browse our selection of ${category} and enhance your gameplay!`;
     }
 
     const cards = grid.querySelectorAll('.package-card');

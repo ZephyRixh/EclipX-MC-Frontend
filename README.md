@@ -159,7 +159,7 @@ python -m http.server 8000
 npx serve
 ```
 
-Then visit `http://localhost:8000`
+Then visit `http://localhost:8000` (or `https://localhost:8000` if using HTTPS)
 
 ---
 
