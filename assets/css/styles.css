@@ -486,37 +486,6 @@ section { padding: 50px 5vw; position: relative; }
   100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
 
-/* ━━ INTRO SECTION ━━ */
-.intro { background: transparent; }
-.intro-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.intro-card { text-align: center; padding: 36px 28px; }
-.intro-icon {
-  width: 48px; height: 48px;
-  margin: 0 auto 20px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: var(--r-md);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--glass-border);
-  color: var(--text-2);
-}
-.intro-card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
-}
-.intro-card p {
-  font-size: 14px;
-  color: var(--text-3);
-  line-height: 1.7;
-}
-
 /* ━━ TEAM PFP GRID ━━ */
 .team-member-pfp {
   display: flex;
@@ -598,45 +567,22 @@ section { padding: 50px 5vw; position: relative; }
 /* ━━ RULES & REFUND ━━ */
 .policies { background: transparent; }
 .policies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 24px;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
 }
-@media(max-width:860px){ .policies-grid{grid-template-columns:1fr} }
-.policy-card { padding: 32px; }
+.policy-card {
+  margin-bottom: 32px;
+}
+.policy-card:last-child { margin-bottom: 0; }
 .policy-card h3 {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: -0.02em;
+  margin-bottom: 8px;
 }
-.policy-card h3 svg { width: 20px; height: 20px; color: var(--text-3); }
-.policy-card ul {
-  list-style: none;
-  padding: 0;
-}
-.policy-card li {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
+.policy-card p {
   color: var(--text-2);
-  line-height: 1.65;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-.policy-card li:last-child { border-bottom: none; }
-.policy-card li::before {
-  content: '→';
-  color: var(--text-3);
-  flex-shrink: 0;
-  font-size: 13px;
-  margin-top: 1px;
+  line-height: 1.7;
+  font-size: 14px;
 }
 
 /* ━━ FAQ ━━ */
@@ -1771,46 +1717,28 @@ section { padding: 50px 5vw; position: relative; }
 }
 
 .policies-header {
-  text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .policies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .policy-card {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 36px;
 }
-
-.policy-icon {
-  width: 64px;
-  height: 64px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--glass-border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
+.policy-card:last-child { margin-bottom: 0; }
 
 .policy-card h3 {
   font-size: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   text-transform: none;
 }
 
 .policy-card p {
   color: var(--text-2);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 14px;
 }
 
@@ -2280,11 +2208,7 @@ section { padding: 50px 5vw; position: relative; }
 }
 
 .rules-footer {
-  margin-top: 60px;
-  padding: 24px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
+  margin-top: 40px;
   text-align: center;
   font-style: italic;
   color: var(--text-3);
