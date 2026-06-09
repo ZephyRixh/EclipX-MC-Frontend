@@ -688,7 +688,7 @@ function switchStoreTab(el, category, updateUrl = true) {
     if (headerH1) headerH1.textContent = category;
     if (headerP) {
       if (category.includes('Ranks')) headerP.textContent = 'Get yourself some awesome ranks! All ranks purchased here will apply only in our gamemode.';
-      else if (category.includes('Coins')) headerP.textContent = 'Get yourself some coins to get awesome keys & perks from coinshop.';
+      else if (category.includes('Epix Dust')) headerP.textContent = 'Get yourself some Epix Dust to get awesome keys & perks from the Epix Dust shop.';
       else if (category.includes('Keys')) headerP.textContent = 'Unlock powerful rewards with our custom crate keys. Each key provides a chance for rare items!';
       else headerP.textContent = `Browse our selection of ${category} and enhance your gameplay!`;
     }
