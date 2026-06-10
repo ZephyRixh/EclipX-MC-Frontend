@@ -1201,6 +1201,45 @@ section { padding: 50px 5vw; position: relative; }
   gap: 16px;
 }
 
+.product-modal-info-section {
+  margin-bottom: 24px;
+}
+
+.product-modal-info-block {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-sm);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.product-modal-info-block:last-child {
+  margin-bottom: 0;
+}
+
+.product-modal-info-block h4 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font);
+}
+
+.product-modal-info-block h4 i {
+  font-size: 16px;
+}
+
+.product-modal-info-block p {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
 
 
 /* Featured Packages Section */
