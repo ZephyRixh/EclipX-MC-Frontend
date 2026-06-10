@@ -64,6 +64,16 @@
           <h2 id="modalProductTitle">Product Title</h2>
           <div class="product-modal-price" id="modalProductPrice">0.00 USD</div>
           <p id="modalProductDescription">Product description goes here.</p>
+          <div class="product-modal-info-section">
+            <div class="product-modal-info-block">
+              <h4><i class="ti ti-info-circle"></i> In-Game Info</h4>
+              <p id="modalProductIngame">Loading...</p>
+            </div>
+            <div class="product-modal-info-block">
+              <h4><i class="ti ti-arrow-right-circle"></i> How to Get</h4>
+              <p id="modalProductHowto">Loading...</p>
+            </div>
+          </div>
           <div class="product-modal-actions">
             <button class="btn-primary" id="modalAddToCart">
               <i class="ti ti-plus"></i> Add to cart
@@ -353,7 +363,7 @@
         <div class="package-grid">
           
           <!-- Rank 1 -->
-          <div class="card package-card reveal" data-category="ranks" data-product-id="vip-rank" data-product-title="VIP Rank" data-product-price="4.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Elevate your experience with our premium ranks. Get exclusive perks, commands, and a special prefix in-game!">
+          <div class="card package-card reveal" data-category="ranks" data-product-id="vip-rank" data-product-title="VIP Rank" data-product-price="4.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Elevate your experience with our premium ranks. Get exclusive perks, commands, and a special prefix in-game!" data-product-ingame="VIP prefix in chat, /fly command, /hat command, /nick command, colored chat, access to VIP-only areas, and a special join message." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game. Join the server and use /rank to see your new perks!">
             <img src="assets/images/eclipxmc_logo.png" alt="VIP Rank" class="package-img">
             <div class="package-title">VIP Rank</div>
             <div class="package-price">4.99 USD</div>
@@ -366,7 +376,7 @@
           </div>
 
           <!-- Rank 2 -->
-          <div class="card package-card reveal" data-category="ranks" data-product-id="elite-rank" data-product-title="Elite Rank" data-product-price="9.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="The Elite rank for those who want the best. Includes all VIP perks plus advanced commands and exclusive access!">
+          <div class="card package-card reveal" data-category="ranks" data-product-id="elite-rank" data-product-title="Elite Rank" data-product-price="9.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="The Elite rank for those who want the best. Includes all VIP perks plus advanced commands and exclusive access!" data-product-ingame="Elite prefix in chat, all VIP perks plus: /feed command, /heal command, /echest command, /craft command, /tpa command, Elite-only areas, and priority queue access." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game. Join the server and use /rank to see your new perks!">
             <img src="assets/images/eclipxmc_logo.png" alt="Elite Rank" class="package-img">
             <div class="package-title">Elite Rank</div>
             <div class="package-price">9.99 USD</div>
@@ -379,7 +389,7 @@
           </div>
 
           <!-- Epix Dust 1 -->
-          <div class="card package-card reveal" data-category="epix-dust" data-product-id="15600-epix-dust" data-product-title="15600 Epix Dust (LIFESTEAL)" data-product-price="12.20" data-product-image="assets/images/coin.png" data-product-description="A massive bundle of 15,600 Epix Dust to spend in the LifeSteal Epix Dust shop. Get the best items and perks instantly!">
+          <div class="card package-card reveal" data-category="epix-dust" data-product-id="15600-epix-dust" data-product-title="15600 Epix Dust (LIFESTEAL)" data-product-price="12.20" data-product-image="assets/images/coin.png" data-product-description="A massive bundle of 15,600 Epix Dust to spend in the LifeSteal Epix Dust shop. Get the best items and perks instantly!" data-product-ingame="15,600 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
             <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">15600 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">12.20 USD</div>
@@ -392,7 +402,7 @@
           </div>
 
           <!-- Epix Dust 2 -->
-          <div class="card package-card reveal" data-category="epix-dust" data-product-id="7800-epix-dust" data-product-title="7800 Epix Dust (LIFESTEAL)" data-product-price="6.50" data-product-image="assets/images/coin.png" data-product-description="7,800 Epix Dust for your LifeSteal adventures. Perfect for getting those essential keys and upgrades!">
+          <div class="card package-card reveal" data-category="epix-dust" data-product-id="7800-epix-dust" data-product-title="7800 Epix Dust (LIFESTEAL)" data-product-price="6.50" data-product-image="assets/images/coin.png" data-product-description="7,800 Epix Dust for your LifeSteal adventures. Perfect for getting those essential keys and upgrades!" data-product-ingame="7,800 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
             <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">7800 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">6.50 USD</div>
@@ -405,7 +415,7 @@
           </div>
 
           <!-- Epix Dust 3 -->
-          <div class="card package-card reveal" data-category="epix-dust" data-product-id="5660-epix-dust" data-product-title="5660 Epix Dust (LIFESTEAL)" data-product-price="4.60" data-product-image="assets/images/coin.png" data-product-description="Boost your Epix Dust balance with 5,660 Epix Dust. Great value for any LifeSteal player!">
+          <div class="card package-card reveal" data-category="epix-dust" data-product-id="5660-epix-dust" data-product-title="5660 Epix Dust (LIFESTEAL)" data-product-price="4.60" data-product-image="assets/images/coin.png" data-product-description="Boost your Epix Dust balance with 5,660 Epix Dust. Great value for any LifeSteal player!" data-product-ingame="5,660 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
             <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">5660 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">4.60 USD</div>
@@ -418,7 +428,7 @@
           </div>
 
           <!-- Epix Dust 4 -->
-          <div class="card package-card reveal" data-category="epix-dust" data-product-id="2800-epix-dust" data-product-title="2800 Epix Dust (LIFESTEAL)" data-product-price="2.50" data-product-image="assets/images/coin.png" data-product-description="A quick boost of 2,800 Epix Dust. Perfect for a few extra keys or perks! ">
+          <div class="card package-card reveal" data-category="epix-dust" data-product-id="2800-epix-dust" data-product-title="2800 Epix Dust (LIFESTEAL)" data-product-price="2.50" data-product-image="assets/images/coin.png" data-product-description="A quick boost of 2,800 Epix Dust. Perfect for a few extra keys or perks! " data-product-ingame="2,800 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
             <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">2800 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">2.50 USD</div>
@@ -431,7 +441,7 @@
           </div>
 
           <!-- Key 1 -->
-          <div class="card package-card reveal" data-category="keys" data-product-id="legendary-key" data-product-title="Legendary Crate Key" data-product-price="2.99" data-product-image="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png">
+          <div class="card package-card reveal" data-category="keys" data-product-id="legendary-key" data-product-title="Legendary Crate Key" data-product-price="2.99" data-product-image="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png" data-product-ingame="Used to open the Legendary Crate in-game. Contains rare items, powerful armor and weapons, exclusive cosmetics, and high-tier loot with the best drop rates." data-product-howto="Keys are delivered directly to your in-game inventory upon purchase. Find the Crate area in the spawn world to use your key and claim your rewards!">
             <img src="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png" alt="Legendary Crate Key" class="package-img gold-shadow">
             <div class="package-title">Legendary Crate Key</div>
             <div class="package-price">2.99 USD</div>
@@ -444,7 +454,7 @@
           </div>
 
           <!-- Key 2 -->
-          <div class="card package-card reveal" data-category="keys" data-product-id="mythic-key" data-product-title="Mythic Crate Key" data-product-price="1.99" data-product-image="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png">
+          <div class="card package-card reveal" data-category="keys" data-product-id="mythic-key" data-product-title="Mythic Crate Key" data-product-price="1.99" data-product-image="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png" data-product-ingame="Used to open the Mythic Crate in-game. Contains powerful weapons, rare armor sets, valuable items, and exclusive Mythic-tier rewards." data-product-howto="Keys are delivered directly to your in-game inventory upon purchase. Find the Crate area in the spawn world to use your key and claim your rewards!">
             <img src="https://cdn.pixabay.com/photo/2016/03/31/21/53/key-1296700_960_720.png" alt="Mythic Crate Key" class="package-img purple-shadow">
             <div class="package-title">Mythic Crate Key</div>
             <div class="package-price">1.99 USD</div>

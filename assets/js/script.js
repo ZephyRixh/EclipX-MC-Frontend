@@ -490,6 +490,8 @@ function initProductModal() {
     document.getElementById('modalProductTitle').textContent = product.title;
     document.getElementById('modalProductPrice').textContent = formatCurrency(product.price);
     document.getElementById('modalProductDescription').textContent = product.description;
+    document.getElementById('modalProductIngame').textContent = product.ingame || 'No in-game info available.';
+    document.getElementById('modalProductHowto').textContent = product.howto || 'No info available.';
     
     const addToCartBtn = document.getElementById('modalAddToCart');
     // Clear previous listeners to avoid duplicates
@@ -515,6 +517,8 @@ function initProductModal() {
       if (!product) return;
       
       product.description = card.getAttribute('data-product-description') || 'No description available.';
+      product.ingame = card.getAttribute('data-product-ingame') || '';
+      product.howto = card.getAttribute('data-product-howto') || '';
       showModal(product);
     });
   });
