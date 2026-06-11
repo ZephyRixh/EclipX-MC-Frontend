@@ -1,4 +1,33 @@
-node_modules
-*.zip
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
 .DS_Store
 Thumbs.db
+*.zip
+
+# Build outputs
+dist/
+build/
+.cache/
+
+# Server build artifacts
+server/node_modules/
+server/package-lock.json
