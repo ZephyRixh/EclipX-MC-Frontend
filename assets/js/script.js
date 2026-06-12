@@ -6,16 +6,32 @@ function escapeHTML(str) {
   return div.innerHTML;
 }
 
+// Decorative icons: mark Tabler icons as hidden from screen readers
+function initDecorativeIcons() {
+  document.querySelectorAll('i[class*=" ti-"]').forEach(el => {
+    if (!el.getAttribute('aria-hidden')) el.setAttribute('aria-hidden', 'true');
+  });
+}
+
 // FAQ ACCORDION
 function initFAQAccordion() {
   document.querySelectorAll('.faq-item').forEach(item => {
     const q = item.querySelector('.faq-question');
     if (!q) return;
-    q.addEventListener('click', () => {
+    q.setAttribute('role', 'button');
+    q.setAttribute('tabindex', '0');
+    const toggle = () => {
       document.querySelectorAll('.faq-item').forEach(o => {
         if (o !== item) o.classList.remove('active');
       });
       item.classList.toggle('active');
+    };
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
     });
   });
 }
@@ -336,9 +352,12 @@ function initCurrencySwitcher() {
     switcher.classList.toggle('open');
   });
 
-  menu?.addEventListener('click', e => {
-    const opt = e.target.closest('.currency-option');
-    if (!opt) return;
+  menu?.querySelectorAll('.currency-option').forEach(opt => {
+    opt.setAttribute('role', 'button');
+    opt.setAttribute('tabindex', '0');
+  });
+
+  const selectCurrency = (opt) => {
     const selectedCurrency = opt.getAttribute('data-currency');
     if (selectedCurrency === currentCurrency) {
       switcher.classList.remove('open');
@@ -349,6 +368,21 @@ function initCurrencySwitcher() {
     updateSwitcherUI();
     updateAllDisplayedPrices();
     switcher.classList.remove('open');
+  };
+
+  menu?.addEventListener('click', e => {
+    const opt = e.target.closest('.currency-option');
+    if (!opt) return;
+    selectCurrency(opt);
+  });
+
+  menu?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const opt = e.target.closest('.currency-option');
+      if (!opt) return;
+      e.preventDefault();
+      selectCurrency(opt);
+    }
   });
 
   document.addEventListener('click', e => {
@@ -503,6 +537,8 @@ function initCartPage() {
   const confirmClearCart = document.getElementById('confirmClearCart');
   const cancelClearCart = document.getElementById('cancelClearCart');
   
+  const closeClearCartModal = () => clearCartModal?.classList.remove('active');
+
   clearCartBtn?.addEventListener('click', () => {
     clearCartModal?.classList.add('active');
   });
@@ -511,11 +547,18 @@ function initCartPage() {
     saveCart({});
     renderCartPage();
     updateCartBadge();
-    clearCartModal?.classList.remove('active');
+    closeClearCartModal();
   });
 
-  cancelClearCart?.addEventListener('click', () => {
-    clearCartModal?.classList.remove('active');
+  cancelClearCart?.addEventListener('click', closeClearCartModal);
+
+  clearCartModal?.querySelector('.modal-overlay')?.addEventListener('click', closeClearCartModal);
+
+  document.addEventListener('keydown', function clearCartEscape(e) {
+    if (e.key === 'Escape' && clearCartModal?.classList.contains('active')) {
+      closeClearCartModal();
+      document.removeEventListener('keydown', clearCartEscape);
+    }
   });
 
   const checkoutBtn = document.getElementById('checkoutBtn');
@@ -617,6 +660,14 @@ function initProductModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
   });
+
+  document.addEventListener('keydown', function modalEscape(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', modalEscape);
+    }
+  });
 }
 
 function initFeaturedCards() {
@@ -649,6 +700,7 @@ function initBackToTop() {
 
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
+  initDecorativeIcons();
   initFAQAccordion();
   initScrollReveal();
   initHeroParticles();

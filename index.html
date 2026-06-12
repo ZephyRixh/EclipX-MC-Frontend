@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="Welcome to the official EclipX MC store. Browse ranks, Epix Dust, keys, and more to enhance your gameplay experience." />
   <meta name="keywords" content="store, gaming, landing page, online shop, gaming store" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -20,6 +22,10 @@
   <base href="/">
   <!-- FAVICONS -->
   <link rel="icon" href="assets/images/eclipxmc_logo.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- TABLER ICONS -->
@@ -43,25 +49,25 @@
     <div class="spotlight-nav-group">
       <nav class="spotlight-nav">
         <ul class="spotlight-nav-list">
-          <li class="spotlight-nav-item"><a href="#" class="spotlight-nav-link active" data-index="0"><i class="ti ti-home"></i>Home</a></li>
-          <li class="spotlight-nav-item"><a href="#store" class="spotlight-nav-link" data-index="1"><i class="ti ti-shopping-cart"></i>Store</a></li>
-          <li class="spotlight-nav-item"><a href="#policies" class="spotlight-nav-link" data-index="2"><i class="ti ti-file-text"></i>Policies</a></li>
+          <li class="spotlight-nav-item"><a href="#" class="spotlight-nav-link active" data-index="0"><i class="ti ti-home" aria-hidden="true"></i>Home</a></li>
+          <li class="spotlight-nav-item"><a href="#store" class="spotlight-nav-link" data-index="1"><i class="ti ti-shopping-cart" aria-hidden="true"></i>Store</a></li>
+          <li class="spotlight-nav-item"><a href="#policies" class="spotlight-nav-link" data-index="2"><i class="ti ti-file-text" aria-hidden="true"></i>Policies</a></li>
         </ul>
         <div class="spotlight-nav-light"></div>
         <div class="spotlight-nav-ambience"></div>
       </nav>
       <div class="currency-switcher" id="currencySwitcher">
-        <button class="currency-dropdown-toggle" type="button">
+        <button class="currency-dropdown-toggle" type="button" aria-label="Switch currency">
           <span class="currency-selected-label">USD</span>
-          <i class="ti ti-chevron-down"></i>
+          <i class="ti ti-chevron-down" aria-hidden="true"></i>
         </button>
         <ul class="currency-dropdown-menu">
           <li class="currency-option active" data-currency="USD">
-            <span class="currency-option-check"><i class="ti ti-check"></i></span>
+            <span class="currency-option-check"><i class="ti ti-check" aria-hidden="true"></i></span>
             <span>USD</span>
           </li>
           <li class="currency-option" data-currency="INR">
-            <span class="currency-option-check"><i class="ti ti-check"></i></span>
+            <span class="currency-option-check"><i class="ti ti-check" aria-hidden="true"></i></span>
             <span>INR</span>
           </li>
         </ul>
@@ -73,7 +79,7 @@
   <div id="productModal" class="modal">
     <div class="modal-overlay"></div>
     <div class="modal-content product-modal">
-      <button class="modal-close" id="closeProduct">&times;</button>
+      <button class="modal-close" id="closeProduct" aria-label="Close product modal">&times;</button>
       <div class="product-modal-body">
         <div class="product-modal-left">
           <img src="" alt="Product" id="modalProductImg">
@@ -85,11 +91,11 @@
           <div class="product-modal-info-section">
             <div class="product-modal-info-block">
               <h4><i class="ti ti-info-circle"></i> In-Game Info</h4>
-              <p id="modalProductIngame">Loading...</p>
+              <p id="modalProductIngame">Loading&hellip;</p>
             </div>
             <div class="product-modal-info-block">
-              <h4><i class="ti ti-arrow-right-circle"></i> How to Get</h4>
-              <p id="modalProductHowto">Loading...</p>
+              <h4><i class="ti ti-arrow-right-circle" aria-hidden="true"></i> How to Get</h4>
+              <p id="modalProductHowto">Loading&hellip;</p>
             </div>
           </div>
           <div class="product-modal-actions">
@@ -107,7 +113,7 @@
     <div class="hero-particles"></div>
 
     <div class="hero-content">
-      <img src="assets/images/eclipxmc_logo.png" alt="Site Logo" class="hero-logo" />
+      <img src="assets/images/eclipxmc_logo.png" alt="Site Logo" class="hero-logo" width="280" height="280" fetchpriority="high" />
       <p class="hero-subtitle">Welcome to EclipX MC | Dominate the MCVerse</p>
       <div class="hero-cta">
         <a href="#store" class="btn-primary"><i class="ti ti-shopping-cart"></i> Visit Store</a>
@@ -276,7 +282,7 @@
       <!-- OWNER -->
       <div class="team-member-pfp reveal">
         <div class="pfp-container">
-          <img src="assets/images/team-1.png" alt="Owner" />
+          <img src="assets/images/team-1.png" alt="Owner" width="140" height="140" loading="lazy" />
           <div class="pfp-glow"></div>
         </div>
         <span class="pfp-name">kageo.nyx</span>
@@ -285,7 +291,7 @@
       <!-- ADMIN -->
       <div class="team-member-pfp reveal">
         <div class="pfp-container">
-          <img src="assets/images/team-2.png" alt="Admin" />
+          <img src="assets/images/team-2.png" alt="Admin" width="140" height="140" loading="lazy" />
           <div class="pfp-glow"></div>
         </div>
         <span class="pfp-name">okotama_69</span>
@@ -294,7 +300,7 @@
       <!-- MODERATOR -->
       <div class="team-member-pfp reveal">
         <div class="pfp-container">
-          <img src="assets/images/team-3.png" alt="Developer" />
+          <img src="assets/images/team-3.png" alt="Developer" width="140" height="140" loading="lazy" />
           <div class="pfp-glow"></div>
         </div>
         <span class="pfp-name">zephy.rixh</span>
@@ -335,8 +341,9 @@
         <!-- SEARCH & FILTERS -->
         <div class="store-filters reveal">
           <div class="search-wrapper">
-            <i class="ti ti-search search-icon"></i>
-            <input type="text" id="productSearch" placeholder="Search for packages..." autocomplete="off">
+            <label for="productSearch" class="sr-only">Search for packages</label>
+            <i class="ti ti-search search-icon" aria-hidden="true"></i>
+            <input type="text" id="productSearch" placeholder="Search for packages&hellip;" autocomplete="off" name="product-search" spellcheck="false">
           </div>
         </div>
         
