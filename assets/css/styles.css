@@ -1003,28 +1003,45 @@ section { padding: 50px 5vw; position: relative; }
 }
 
 .checkout-info {
-  margin-top: 12px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: rgba(88, 101, 242, 0.05);
+  border: 1px solid rgba(88, 101, 242, 0.2);
   border-radius: var(--r-md);
   text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .checkout-info p {
-  margin-bottom: 8px;
-  font-size: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .checkout-info ol {
   margin: 0;
-  padding-left: 18px;
-  font-size: 11px;
+  padding-left: 20px;
+  font-size: 13.5px;
   color: var(--text-2);
 }
 
 .checkout-info li {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.checkout-info li:last-child {
+  margin-bottom: 0;
+}
+
+.checkout-info li strong {
+  color: var(--text);
+}
+
+.checkout-info li::marker {
+  color: #5865F2;
+  font-weight: 700;
 }
 
 .cart-empty {
