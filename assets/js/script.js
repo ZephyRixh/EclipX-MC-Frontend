@@ -91,10 +91,10 @@ const Router = {
       const anchor = e.target.closest('a');
       if (!anchor) return;
 
-const href = anchor.getAttribute('href');
-if (!href) return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
 
-// Handle sidebar links specially
+      // Handle sidebar links specially
       if (anchor.classList.contains('sidebar-link')) {
         e.preventDefault();
         const categoryPath = anchor.getAttribute('data-category-path');
@@ -258,10 +258,10 @@ function initCardTilt() {
 }
 
 const CART_STORAGE_KEY = 'store_cart';
+const CURRENCY_STORAGE_KEY = 'store_currency';
+const INR_EXCHANGE_RATE = 83.0; // 1 USD = 83 INR
 
-function formatCurrency(amount) {
-  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY) || 'USD';
 
 function getCart() {
   try {
@@ -273,6 +273,76 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+}
+
+function formatCurrency(amount) {
+  if (currentCurrency === 'INR') {
+    return (amount * INR_EXCHANGE_RATE).toLocaleString('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+function updateAllDisplayedPrices() {
+  // 1. Update product cards
+  document.querySelectorAll('.package-card').forEach(card => {
+    const rawPrice = parseFloat(card.getAttribute('data-product-price'));
+    if (!isNaN(rawPrice)) {
+      const priceEl = card.querySelector('.package-price');
+      if (priceEl) priceEl.textContent = formatCurrency(rawPrice);
+    }
+  });
+
+  // 2. Update modal price if modal is open
+  const modal = document.getElementById('productModal');
+  if (modal && modal.classList.contains('active')) {
+    const rawPrice = parseFloat(modal.getAttribute('data-product-price'));
+    if (!isNaN(rawPrice)) {
+      const modalPriceEl = document.getElementById('modalProductPrice');
+      if (modalPriceEl) modalPriceEl.textContent = formatCurrency(rawPrice);
+    }
+  }
+
+  // 3. Re-render cart page if we're on it
+  if (document.getElementById('cart-items')) {
+    renderCartPage();
+  }
+}
+
+function initCurrencySwitcher() {
+  const switcher = document.getElementById('currencySwitcher');
+  if (!switcher) return;
+
+  const updateSwitcherUI = () => {
+    switcher.querySelectorAll('.currency-btn').forEach(btn => {
+      const cur = btn.getAttribute('data-currency');
+      if (cur === currentCurrency) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  };
+
+  // Set initial active button
+  updateSwitcherUI();
+
+  // Set click handlers
+  switcher.addEventListener('click', e => {
+    const btn = e.target.closest('.currency-btn');
+    if (!btn) return;
+    const selectedCurrency = btn.getAttribute('data-currency');
+    if (selectedCurrency === currentCurrency) return;
+
+    currentCurrency = selectedCurrency;
+    localStorage.setItem(CURRENCY_STORAGE_KEY, selectedCurrency);
+    updateSwitcherUI();
+    updateAllDisplayedPrices();
+  });
 }
 
 function getProductFromCard(card) {
@@ -396,6 +466,7 @@ function removeCartItem(productId) {
   updateCartBadge();
 }
 
+// initCartPage
 function initCartPage() {
   renderCartPage();
   const cartItemsContainer = document.getElementById('cart-items');
@@ -486,6 +557,7 @@ function initProductModal() {
   if (!modal) return;
 
   const showModal = (product) => {
+    modal.setAttribute('data-product-price', product.price);
     document.getElementById('modalProductImg').src = product.image;
     document.getElementById('modalProductTitle').textContent = product.title;
     document.getElementById('modalProductPrice').textContent = formatCurrency(product.price);
@@ -544,6 +616,7 @@ function initFeaturedCards() {
   });
 }
 
+// BACK TO TOP
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -574,6 +647,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductModal();
   initFeaturedCards();
   initBackToTop();
+  initCurrencySwitcher();
+  updateAllDisplayedPrices();
 });
 
 // STORE PREVIEW TABS
@@ -672,7 +747,6 @@ function switchStoreTab(el, category, updateUrl = true) {
 
   links.forEach((link, idx) => {
     if (link.classList.contains('active')) activeIndex = idx;
-    // Clicks are now handled by Router.init()
   });
 
   function animate() {
