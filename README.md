@@ -120,7 +120,7 @@ The checkout button redirects the user to your Discord server via JavaScript:
 | `eclipxmc_logo.png` | Site logo & favicon |
 | `coin.png` | Epix Dust product icons |
 | `stars-bg.png` | Animated backdrop background |
-| `team-1.png` to `team-3.png` | Profile pictures for staff/team members |
+
 
 **Tips:**
 - Keep images optimized (use WebP or compressed PNGs for better performance).

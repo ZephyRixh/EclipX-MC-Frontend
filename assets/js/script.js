@@ -56,6 +56,22 @@ function initHeroParticles() {
   }
 }
 
+// ━━ HERO VIDEO ━━
+function initHeroVideo() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const video = document.createElement('video');
+  video.className = 'hero-video';
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.src = 'assets/images/background.mp4';
+  video.addEventListener('canplaythrough', () => video.classList.add('ready'), { once: true });
+  hero.insertBefore(video, hero.firstChild);
+  if (video.readyState >= 4) video.classList.add('ready');
+}
+
 // ━━ IP COPY ━━
 function initIPCopy() {
   const el = document.getElementById('ipCopy');
@@ -75,11 +91,51 @@ function initIPCopy() {
   });
 }
 
+// ━━ FLIP FADE TEXT ━━
+function initFlipFade() {
+  const el = document.querySelector('.flip-fade-wrap');
+  if (!el) return;
+
+  const phrases = ['Welcome to EclipX MC', 'Dominate the MCVerse'];
+
+  phrases.forEach((phrase, idx) => {
+    const word = document.createElement('span');
+    word.className = 'flip-fade-word';
+    if (idx === 0) word.classList.add('active');
+
+    for (let i = 0; i < phrase.length; i++) {
+      const letter = document.createElement('span');
+      letter.className = 'flip-fade-letter';
+      letter.style.setProperty('--i', i);
+      letter.textContent = phrase[i] === ' ' ? '\u00A0' : phrase[i];
+      word.appendChild(letter);
+    }
+
+    el.appendChild(word);
+  });
+
+  let current = 0;
+  const interval = 5000;
+
+  setInterval(() => {
+    const words = el.children;
+    const prev = current;
+    current = (current + 1) % words.length;
+
+    words[prev].classList.remove('active');
+    words[prev].classList.add('exiting');
+    words[current].classList.add('active');
+
+    setTimeout(() => {
+      words[prev].classList.remove('exiting');
+    }, 2000);
+  }, interval);
+}
+
 // ━━ ROUTING SYSTEM ━━
 const Router = {
   routes: {
     '/': 'hero',
-    '/team': 'team',
     '/store': 'store',
     '/policies': 'policies',
     '/faq': 'faq'
@@ -183,20 +239,20 @@ const Router = {
   },
 
   updateNavbarActive(path) {
-    const links = document.querySelectorAll('.spotlight-nav-link');
+    const links = document.querySelectorAll('.spotlight-link');
     links.forEach(link => {
       const href = link.getAttribute('href');
-      const targetPath = href === '#' ? '/' : '/' + href.substring(1);
-      
-      if (path === targetPath) {
-        link.classList.add('active');
-        // Update spotlight nav indicator if needed
-        const idx = link.getAttribute('data-index');
-        if (idx !== null && typeof updateAmbience === 'function') {
-           updateAmbience(parseInt(idx));
-        }
+      let targetPath;
+      if (href.includes('#')) {
+        targetPath = '/' + href.substring(href.indexOf('#') + 1);
       } else {
-        link.classList.remove('active');
+        targetPath = '/';
+      }
+      
+      const isActive = path === targetPath || (path === '/store' && targetPath === '/store') || (path === '/policies' && targetPath === '/policies');
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        updateAmbience(parseInt(link.getAttribute('data-index')));
       }
     });
   }
@@ -258,10 +314,10 @@ function initCardTilt() {
 }
 
 const CART_STORAGE_KEY = 'store_cart';
-const CURRENCY_STORAGE_KEY = 'store_currency';
-const INR_EXCHANGE_RATE = 83.0; // 1 USD = 83 INR
+const INR_EXCHANGE_RATE = 83;
 
-let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY) || 'USD';
+
+let currentCurrency = 'USD';
 
 function getCart() {
   try {
@@ -285,6 +341,50 @@ function formatCurrency(amount) {
     });
   }
   return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+function initCurrencySwitcher() {
+  const switcher = document.getElementById('currencySwitcher');
+  if (!switcher) return;
+
+  const btn = switcher.querySelector('.currency-switcher-btn');
+  const currentLabel = switcher.querySelector('.currency-switcher-current');
+  const options = switcher.querySelectorAll('.currency-option');
+
+  const savedCurrency = localStorage.getItem('store_currency');
+  if (savedCurrency && (savedCurrency === 'USD' || savedCurrency === 'INR')) {
+    currentCurrency = savedCurrency;
+  }
+
+  currentLabel.textContent = currentCurrency;
+  options.forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('data-currency') === currentCurrency);
+  });
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    switcher.classList.toggle('open');
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const currency = opt.getAttribute('data-currency');
+      if (currency === currentCurrency) {
+        switcher.classList.remove('open');
+        return;
+      }
+      currentCurrency = currency;
+      localStorage.setItem('store_currency', currency);
+      currentLabel.textContent = currency;
+      options.forEach(o => o.classList.toggle('active', o.getAttribute('data-currency') === currency));
+      switcher.classList.remove('open');
+      updateAllDisplayedPrices();
+    });
+  });
+
+  document.addEventListener('click', () => {
+    switcher.classList.remove('open');
+  });
 }
 
 function updateAllDisplayedPrices() {
@@ -311,51 +411,6 @@ function updateAllDisplayedPrices() {
   if (document.getElementById('cart-items')) {
     renderCartPage();
   }
-}
-
-function initCurrencySwitcher() {
-  const switcher = document.getElementById('currencySwitcher');
-  if (!switcher) return;
-
-  const toggle = switcher.querySelector('.currency-dropdown-toggle');
-  const menu = switcher.querySelector('.currency-dropdown-menu');
-  const selectedLabel = toggle?.querySelector('.currency-selected-label');
-
-  const updateSwitcherUI = () => {
-    switcher.querySelectorAll('.currency-option').forEach(opt => {
-      const cur = opt.getAttribute('data-currency');
-      opt.classList.toggle('active', cur === currentCurrency);
-    });
-    if (selectedLabel) selectedLabel.textContent = currentCurrency;
-  };
-
-  updateSwitcherUI();
-
-  toggle?.addEventListener('click', e => {
-    e.stopPropagation();
-    switcher.classList.toggle('open');
-  });
-
-  menu?.addEventListener('click', e => {
-    const opt = e.target.closest('.currency-option');
-    if (!opt) return;
-    const selectedCurrency = opt.getAttribute('data-currency');
-    if (selectedCurrency === currentCurrency) {
-      switcher.classList.remove('open');
-      return;
-    }
-    currentCurrency = selectedCurrency;
-    localStorage.setItem(CURRENCY_STORAGE_KEY, selectedCurrency);
-    updateSwitcherUI();
-    updateAllDisplayedPrices();
-    switcher.classList.remove('open');
-  });
-
-  document.addEventListener('click', e => {
-    if (!switcher.contains(e.target)) {
-      switcher.classList.remove('open');
-    }
-  });
 }
 
 function getProductFromCard(card) {
@@ -522,7 +577,7 @@ function initCartPage() {
 
   checkoutBtn?.addEventListener('click', (e) => {
     e.preventDefault();
-    window.location.href = 'https://discord.gg/pvc3CJpKaY';
+    window.location.href = 'https://dsc.gg/eclipxmc/';
   });
 }
 
@@ -652,7 +707,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initScrollReveal();
   initHeroParticles();
+  initHeroVideo();
   initIPCopy();
+  initFlipFade();
   initPreloader();
   initCardTilt();
   initCartSystem();
@@ -734,56 +791,123 @@ function switchStoreTab(el, category, updateUrl = true) {
   }, 300);
 }
 
-// SPOTLIGHT NAVBAR LOGIC
+// SPOTLIGHT NAVBAR
 (function() {
-  const nav = document.querySelector('.spotlight-nav');
+  const nav = document.getElementById('spotlightNav');
   if (!nav) return;
 
-  const links = nav.querySelectorAll('.spotlight-nav-link');
   let activeIndex = 0;
-  let currentAmbienceX = 0;
-  let targetAmbienceX = 0;
+  let ambienceX = 0;
+  let ambienceVelocity = 0;
+  let spotlightX = 0;
+  let spotlightVelocity = 0;
 
-  window.updateAmbience = function(index, immediate = false) {
-    const item = links[index];
-    if (!item) return;
-    
-    const navRect = nav.getBoundingClientRect();
-    const itemRect = item.getBoundingClientRect();
-    targetAmbienceX = itemRect.left - navRect.left + itemRect.width / 2;
-    
-    if (immediate) {
-      currentAmbienceX = targetAmbienceX;
-      nav.style.setProperty('--ambience-x', `${currentAmbienceX}px`);
-    }
-  };
-
-  links.forEach((link, idx) => {
+  nav.querySelectorAll('.spotlight-link').forEach((link, idx) => {
     if (link.classList.contains('active')) activeIndex = idx;
   });
 
-  function animate() {
-    const stiffness = 0.15;
-    const friction = 0.8;
-    let velocity = (targetAmbienceX - currentAmbienceX) * stiffness;
-    currentAmbienceX += velocity;
-    nav.style.setProperty('--ambience-x', `${currentAmbienceX}px`);
-    requestAnimationFrame(animate);
+  function getItemCenter(index) {
+    const item = nav.querySelector(`[data-index="${index}"]`);
+    if (!item) return null;
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    return itemRect.left - navRect.left + itemRect.width / 2;
   }
-  
+
+  window.updateAmbience = function(index) {
+    const targetX = getItemCenter(index);
+    if (targetX === null) return;
+    ambienceX = targetX;
+    nav.style.setProperty('--ambience-x', `${targetX}px`);
+  };
+
+  function springToTarget() {
+    const targetX = getItemCenter(activeIndex);
+    if (targetX === null) return;
+
+    const stiffness = 0.08;
+    const damping = 0.75;
+    
+    function tick() {
+      const dx = targetX - ambienceX;
+      ambienceVelocity += dx * stiffness;
+      ambienceVelocity *= damping;
+      ambienceX += ambienceVelocity;
+      nav.style.setProperty('--ambience-x', `${ambienceX}px`);
+      
+      if (Math.abs(dx) > 0.5 || Math.abs(ambienceVelocity) > 0.1) {
+        requestAnimationFrame(tick);
+      } else {
+        ambienceX = targetX;
+        nav.style.setProperty('--ambience-x', `${targetX}px`);
+      }
+    }
+    tick();
+  }
+
+  function springSpotlightTo(targetX) {
+    const stiffness = 0.06;
+    const damping = 0.7;
+
+    function tick() {
+      const dx = targetX - spotlightX;
+      spotlightVelocity += dx * stiffness;
+      spotlightVelocity *= damping;
+      spotlightX += spotlightVelocity;
+      nav.style.setProperty('--spotlight-x', `${spotlightX}px`);
+
+      if (Math.abs(dx) > 0.5 || Math.abs(spotlightVelocity) > 0.1) {
+        requestAnimationFrame(tick);
+      } else {
+        spotlightX = targetX;
+        nav.style.setProperty('--spotlight-x', `${targetX}px`);
+      }
+    }
+    tick();
+  }
+
   setTimeout(() => {
-    updateAmbience(activeIndex, true);
-    animate();
-  }, 100);
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      spotlightX = targetX;
+      ambienceX = targetX;
+      nav.style.setProperty('--spotlight-x', `${targetX}px`);
+      nav.style.setProperty('--ambience-x', `${targetX}px`);
+    }
+  }, 50);
+
+  nav.addEventListener('click', (e) => {
+    const link = e.target.closest('.spotlight-link');
+    if (!link) return;
+    const idx = parseInt(link.getAttribute('data-index'));
+    if (!isNaN(idx)) {
+      activeIndex = idx;
+      springToTarget();
+    }
+  });
 
   nav.addEventListener('mousemove', (e) => {
-    nav.classList.add('is-hovered');
     const rect = nav.getBoundingClientRect();
     const x = e.clientX - rect.left;
+    spotlightX = x;
     nav.style.setProperty('--spotlight-x', `${x}px`);
+    nav.classList.add('is-hovered');
   });
 
   nav.addEventListener('mouseleave', () => {
     nav.classList.remove('is-hovered');
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      springSpotlightTo(targetX);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      updateAmbience(activeIndex);
+      spotlightX = targetX;
+      nav.style.setProperty('--spotlight-x', `${targetX}px`);
+    }
   });
 })();
