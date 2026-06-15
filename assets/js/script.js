@@ -42,7 +42,9 @@ function initScrollReveal() {
 function initHeroParticles() {
   const container = document.querySelector('.hero-particles');
   if (!container) return;
-  for (let i = 0; i < 25; i++) {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const count = isMobile ? 8 : 25;
+  for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     p.classList.add('hero-particle');
     p.style.left = Math.random() * 100 + '%';
@@ -58,6 +60,7 @@ function initHeroParticles() {
 
 // ━━ HERO VIDEO ━━
 function initHeroVideo() {
+  if (window.matchMedia('(max-width: 768px)').matches) return;
   const hero = document.querySelector('.hero');
   if (!hero) return;
   const video = document.createElement('video');
@@ -290,6 +293,7 @@ function initPreloader() {
 
 // ━━ SUBTLE CARD TILT & GLOW ━━
 function initCardTilt() {
+  const isTouch = window.matchMedia('(hover: none)').matches;
   document.querySelectorAll('.card, .cart-item').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
@@ -299,7 +303,7 @@ function initCardTilt() {
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
 
-      if (card.classList.contains('card')) {
+      if (card.classList.contains('card') && !isTouch) {
         const centerX = x / rect.width - 0.5;
         const centerY = y / rect.height - 0.5;
         card.style.transform = `perspective(900px) rotateY(${centerX * 3}deg) rotateX(${-centerY * 3}deg) translateY(-4px)`;
@@ -310,6 +314,13 @@ function initCardTilt() {
         card.style.transform = '';
       }
     });
+    if (isTouch) {
+      card.addEventListener('touchstart', () => {
+        if (card.classList.contains('card')) {
+          card.style.transform = '';
+        }
+      });
+    }
   });
 }
 
