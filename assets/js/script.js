@@ -137,8 +137,9 @@ const Router = {
   routes: {
     '/': 'hero',
     '/store': 'store',
-    '/policies': 'policies',
-    '/faq': 'faq'
+    '/vote': 'vote',
+    '/faq': 'faq',
+    '/policies': 'policies'
   },
 
   init() {
@@ -249,7 +250,7 @@ const Router = {
         targetPath = '/';
       }
       
-      const isActive = path === targetPath || (path === '/store' && targetPath === '/store') || (path === '/policies' && targetPath === '/policies');
+      const isActive = path === targetPath || (path === '/store' && targetPath === '/store') || (path === '/vote' && targetPath === '/vote') || (path === '/faq' && targetPath === '/faq') || (path === '/policies' && targetPath === '/policies');
       link.classList.toggle('active', isActive);
       if (isActive) {
         updateAmbience(parseInt(link.getAttribute('data-index')));
