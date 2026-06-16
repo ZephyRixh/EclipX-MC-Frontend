@@ -30,7 +30,6 @@
 @property --rg-stop-4 { syntax: '<percentage>'; initial-value: 93.52%; inherits: false; }
 @property --rg-stop-5 { syntax: '<percentage>'; initial-value: 100%; inherits: false; }
 
-html { overflow-x: hidden; }
 :root {
   --bg: #000000;
   --surface: rgba(255,255,255,0.03);
@@ -1587,7 +1586,7 @@ section { padding: 50px 5vw; position: relative; }
 
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -1931,7 +1930,7 @@ section { padding: 50px 5vw; position: relative; }
 
 .rules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 32px;
   margin-top: 32px !important;
 }
@@ -2501,131 +2500,5 @@ input:checked + .slider:before {
   }
 }
 
-/* ━━ MOBILE RESPONSIVE ━━ */
-@media (max-width: 768px) {
-  section { padding: 40px 5vw; }
-  .section-sub { margin-bottom: 32px; }
 
-  .hero { min-height: 90dvh; }
-  .hero-content { padding: 16px; }
-  .hero-cta { gap: 10px; }
-  .hero-cta .rg-button,
-  .hero-cta .candy-btn { min-width: 0; width: 100%; max-width: 280px; }
-  .hero-subtitle { margin-bottom: 20px; }
-  .hero-logo { width: clamp(100px, 25vw, 160px); }
 
-  .spotlight-link { padding: 6px 12px; font-size: 12px; gap: 4px; }
-  .spotlight-link i { font-size: 14px; }
-
-  .store-section { padding: 40px 4vw; }
-  .sidebar-link { padding: 14px 18px; font-size: 14px; }
-  .sidebar-header { margin-bottom: 24px; }
-
-  .package-grid { gap: 16px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  .package-card { padding: 20px 16px; }
-  .package-img { width: 90px; height: 90px; margin-bottom: 14px; }
-  .package-title { font-size: 14px; min-height: auto; }
-  .package-price { margin-bottom: 14px; }
-
-  .ip-copy { padding: 8px 14px 8px 18px; gap: 8px; flex-wrap: wrap; justify-content: center; }
-  .ip-copy-label { font-size: 10px; }
-  .ip-copy-value { font-size: 13px; }
-
-  .cart-container { padding: 24px 16px 60px; }
-  .cart-header { margin-bottom: 32px; }
-  .cart-header p { font-size: 15px; }
-  .cart-layout { gap: 24px; }
-  .cart-item { grid-template-columns: 80px 1fr; gap: 16px; padding: 16px; }
-  .cart-item-img { width: 80px; height: 80px; padding: 8px; }
-  .cart-item-title { font-size: 15px; }
-  .cart-item-controls { flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .cart-summary-wrapper { margin-top: 16px; }
-
-  .discord-cta { padding: 48px 24px; margin: 30px auto; }
-  .discord-cta-icon { font-size: 48px; }
-  .discord-cta p { font-size: 15px; margin-bottom: 24px; }
-
-  .vote-rewards { padding: 28px !important; }
-  .vote-layout { gap: 24px; }
-  .vote-card { padding: 20px; }
-
-  .product-modal { width: 95%; }
-  .product-modal-left { padding: 24px; }
-  .product-modal-left img { max-width: 160px; }
-  .product-modal-right { padding: 24px; }
-  .product-modal-right h2 { font-size: 24px; }
-  .product-modal-price { font-size: 20px; margin-bottom: 16px; }
-  .product-modal-actions { flex-direction: column; gap: 10px; }
-
-  .featured-grid { grid-template-columns: 1fr; }
-  .featured-card { padding: 24px !important; gap: 16px; }
-  .featured-card-icon { width: 48px; height: 48px; font-size: 24px; }
-  .featured-card-info h4 { font-size: 18px; }
-
-  .rules-grid { grid-template-columns: 1fr; gap: 24px; }
-  .rule-group h3 { font-size: 18px; margin-bottom: 16px; }
-  .rules-heading { margin-top: 40px !important; }
-
-  .welcome-section { padding: 20px 5vw; }
-  .welcome-title { font-size: 26px; }
-
-  .back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; font-size: 16px; }
-
-  .footer-content { text-align: center; justify-content: center; }
-  .footer-favicon { width: 80px; height: 80px; }
-  .footer-center { flex-wrap: wrap; justify-content: center; }
-
-  .faq-question { padding: 14px 16px; }
-  .faq-question-text { font-size: 13px; }
-  .faq-answer { font-size: 13px; }
-  .faq-item.active .faq-answer { padding: 0 16px 14px; }
-
-  .policies-grid { padding: 0; }
-  .policy-card { margin-bottom: 24px; }
-  .policy-card h3 { font-size: 18px; }
-
-  .preloader-logo-wrapper { width: 140px; height: 140px; }
-  .preloader-glow { width: 200px; height: 200px; }
-
-  .store-filters { flex-direction: column; gap: 12px; }
-  .search-wrapper { max-width: 100%; }
-}
-
-@media (max-width: 480px) {
-  section { padding: 32px 4vw; }
-  .section-sub { margin-bottom: 24px; }
-
-  .hero { min-height: 85dvh; }
-  .hero-content { padding: 12px; }
-  .hero-cta .rg-button,
-  .hero-cta .candy-btn { max-width: 240px; }
-
-  .spotlight-nav { height: 38px; }
-  .spotlight-link { padding: 4px 10px; font-size: 11px; }
-  .spotlight-link i { font-size: 12px; }
-
-  .package-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-  .package-card { padding: 16px 12px; }
-  .package-img { width: 72px; height: 72px; }
-
-  .cart-item { grid-template-columns: 1fr; gap: 12px; }
-  .cart-item-img { width: 64px; height: 64px; margin: 0 auto; }
-
-  .discord-cta { padding: 36px 20px; }
-  .discord-cta h2 { font-size: 26px; }
-  .discord-cta-icon { font-size: 40px; }
-
-  .product-modal-left { padding: 16px; }
-  .product-modal-left img { max-width: 120px; }
-  .product-modal-right { padding: 16px; }
-
-  .vote-card { padding: 16px; }
-  .vote-rewards { padding: 20px !important; }
-
-  .featured-card { flex-direction: column; text-align: center; padding: 20px !important; }
-
-  .welcome-title { font-size: 22px; }
-
-  .preloader-logo-wrapper { width: 100px; height: 100px; }
-  .preloader-glow { width: 150px; height: 150px; }
-}
