@@ -557,7 +557,7 @@ section { padding: 50px 5vw; position: relative; }
   height: auto;
   margin: 0 auto;
   position: relative;
-  left: 12px;
+  left: 10px;
   top: 45px;
   filter: drop-shadow(0 0 60px rgba(255,255,255,0.15));
   animation: heroFloat 7s ease-in-out infinite;
