@@ -5,20 +5,23 @@ Welcome to the web repository for this modern store frontend. This project is a 
 ## :rocket: Features
 
 - **Spotlight Navigation:** A custom-engineered navbar with dynamic lighting effects that follow the mouse and highlight active sections.
-- **Immersive Hero Section:** Featuring animated particles, ghost text layers, and a one-click "Copy IP" system.
-- **Interactive Store Preview:** A responsive sidebar-driven category system (Ranks, Coins, etc.) with staggered fade-in animations.
+- **Immersive Hero Section:** Featuring animated particles, glow/hover effects, and a one-click "Copy IP" system.
+- **Interactive Store Preview:** A responsive sidebar-driven category system (Ranks, Epix Dust, Keys) with staggered fade-in animations and client-side routing.
 - **Visual Polish:**
   - **Scroll Reveal:** Smooth intersection-based reveal animations as you scroll.
   - **3D Card Tilt:** Subtle mouse-tracking tilt and glow effects on store packages and cards.
   - **Smooth Scrolling:** Seamless navigation between sections.
-- **Custom Branding:** Integrated custom fonts (Ethnocentric & Epic Pro) and server-specific assets.
-- **Discord Checkout:** Customers are redirected to your Discord server to complete purchases via ticket system.
+- **Custom Branding:** Integrated custom fonts (Bricolage Grotesque & Epic Pro) and server-specific assets.
+- **Discord Checkout:** Customers add items to a local shopping cart and are redirected to your Discord server to complete purchases via a ticket system.
 
 ## :wrench: Tech Stack
 
 - **HTML5:** Semantic structure.
-- **CSS3:** Custom properties (variables), Flexbox, Grid, and advanced animations.
-- **Vanilla JavaScript:** Zero dependencies, modular initialization, and high-performance DOM manipulation.
+- **CSS3:** Custom properties (variables), Flexbox, Grid, keyframe animations, and glassmorphism.
+- **Vanilla JavaScript:** Zero dependencies, modular initialization, high-performance DOM manipulation, and history-based SPA client routing.
+- **Vercel Routing:** Configuration (`vercel.json`) to redirect store categories and pages back to `index.html` for clean client-side routing.
+
+---
 
 ## :memo: Configuration / Customization Guide
 
@@ -28,81 +31,83 @@ This guide tells you exactly what to change and where to customize the website f
 
 **File:** `index.html`
 **Search for:** `ip-copy-value`
-**Example line (line 91):**
+**Example line (around line 101):**
 ```html
-<span class="ip-copy-value">server.example.com</span>
+<span class="ip-copy-value">play.eclipxmc.fun</span>
 ```
-**Change:** `server.example.com` to your actual server IP address.
+**Change:** `play.eclipxmc.fun` to your actual server IP address.
 
 ---
 
 ### 2. Discord Server Link
 
-Used in multiple places (Hero, Store, Footer, Checkout redirect).
+Used in multiple places (Hero, Join Community banner, Footer, and Checkout redirect).
 
-**Files:** `index.html`, `cart.html`
+**Files:** `index.html`, `cart.html`, `assets/js/script.js`
 **Search for:** `discord.gg/`
 **Action:** Replace the invite code `pvc3CJpKaY` with your own Discord invite code.
 
-| Location | Line(s) | Current Value |
-|----------|---------|----------------|
-| Hero (Join Discord button) | `index.html` line 86 | `discord.gg/pvc3CJpKaY` |
-| Welcome section | `index.html` line 578 | `discord.gg/pvc3CJpKaY` |
-| Footer | `index.html` line 600, 603 | `discord.gg/pvc3CJpKaY` |
-| Checkout redirect | `cart.html` line 138, 141 | `discord.gg/pvc3CJpKaY` |
+| Location | File | Line(s) | Current Value |
+|----------|------|---------|----------------|
+| Hero (Join Discord button) | `index.html` | Line 96 | `https://discord.gg/pvc3CJpKaY` |
+| Discord CTA section | `index.html` | Line 529 | `https://discord.gg/pvc3CJpKaY` |
+| Footer links (Home page) | `index.html` | Lines 551, 554 | `https://discord.gg/pvc3CJpKaY` |
+| Footer links (Cart page) | `cart.html` | Lines 138, 142 | `https://discord.gg/pvc3CJpKaY` |
+| Checkout redirect logic | `assets/js/script.js` | Line 441 | `https://discord.gg/pvc3CJpKaY` |
 
 ---
 
 ### 3. Server Name / Branding
 
-**File:** `index.html`
-**Search for:** `ServerName` or your current server name
-**Action:** Update your server name throughout the site.
+**Files:** `index.html`, `cart.html`
+**Search for:** `EclipX MC`
+**Action:** Update your server name throughout the site (titles, meta tags, hero subtitle, welcome headers, policy section, and footers).
 
 ---
 
 ### 4. Store Categories & Packages
 
 **File:** `index.html`
-**Search for:** `store-category` or `package-card`
+**Search for:** `sidebar-link` or `package-card`
 
-- Store categories are defined in the sidebar (lines around 140-180)
-- Each category has `data-category` and `data-category-path` attributes
-- Package cards in each category section have `data-product-id`, `data-product-title`, `data-product-price`, etc.
+- **Sidebar categories** are defined in the store sidebar (lines 302-311).
+  Each link has `data-category` and `data-category-path` attributes.
+- **Package cards** are defined inside a single container `<div class="package-grid">` (lines 363-469).
+  Each card uses `data-category` (e.g. `ranks`, `epix-dust`, `keys`) to filter dynamically.
 
 **To add/edit products:**
-1. Find the category section (e.g., `<div id="ranks" class="tab-content">`)
-2. Add or modify package cards with updated prices and titles
-3. Update the category count/total in the sidebar if needed
+1. Find the package grid (around line 363 in `index.html`).
+2. Add or modify package cards (`<div class="card package-card" ...>`) with appropriate data attributes:
+   - `data-category`: Category name matching the sidebar link's path (e.g., `ranks`, `epix-dust`, `keys`).
+   - `data-product-id`: Unique identifier for the item (e.g., `vip-rank`).
+   - `data-product-title`: Name shown on the card and modal.
+   - `data-product-price`: Price formatted as a number (e.g., `4.99`).
+   - `data-product-image`: Path to the product image.
+   - `data-product-description`: Brief text describing the product.
+   - `data-product-ingame`: List of in-game perks.
+   - `data-product-howto`: Instructions on how the package is claimed.
 
 ---
 
 ### 5. Checkout Process (Discord Ticket System)
 
-**File:** `cart.html` (Order Summary section)
-**Search for:** `checkout-info` or `How it works`
+**Files:** `cart.html` and `assets/js/script.js`
+**Search for:** `checkoutBtn`
 
-The checkout button already redirects to your Discord server. To customize the instructions:
-- Edit the `<div class="checkout-info">` section in `cart.html`
-- Update the category name if your Discord has a different category for tickets
-
-**Default flow:**
-1. User clicks "Proceed to Checkout"
-2. User is redirected to your Discord server
-3. User creates a ticket in the Store category
-4. Staff assists with payment
+The checkout button redirects the user to your Discord server via JavaScript:
+- To update the redirect link, replace the URL inside `assets/js/script.js` (around line 441).
+- To edit the instructions shown to the customer inside the checkout card, modify the `<div class="checkout-info">` section in `cart.html` (lines 109-117).
 
 ---
 
 ### 6. Footer Information
 
-**File:** `index.html`
-**Search for:** `footer-content`
+**Files:** `index.html`, `cart.html`
+**Search for:** `<footer class="footer">`
 
-- Update server name in footer-left
-- Update copyright year
-- Update social links if needed
-- Update business contact email if different
+- Update server copyright years and info in `footer-disclaimer`.
+- Update the navigation links in `footer-center` (lines 549-551 in `index.html`).
+- Update the credit link / social icons in `footer-right`.
 
 ---
 
@@ -110,64 +115,73 @@ The checkout button already redirects to your Discord server. To customize the i
 
 **Folder:** `assets/images/`
 
-| Image | Purpose |
-|-------|--------|
-| `favicon.png` / `favicon_io/` | Site favicon |
-| `hero/` | Hero section background images |
-| `store/` | Product/package images |
+| Image / Asset | Purpose |
+|---------------|---------|
+| `eclipxmc_logo.png` | Site logo & favicon |
+| `coin.png` | Epix Dust product icons |
+| `stars-bg.png` | Animated backdrop background |
+
 
 **Tips:**
-- Keep images optimized (use WebP for better performance)
-- Ensure product images have transparent backgrounds where applicable
+- Keep images optimized (use WebP or compressed PNGs for better performance).
+- Ensure product images have transparent backgrounds where applicable.
 
 ---
 
 ### 8. Theme Colors (Advanced)
 
 **File:** `assets/css/styles.css`
-**Search for:** `:root` (around line 20-40)
+**Search for:** `:root` (lines 15-32)
 
 ```css
 :root {
-  --primary: #your-primary-color;
-  --accent: #your-accent-color;
-  --background: #your-bg-color;
+  --bg: #000000;
+  --surface: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.06);
+  --accent: #ffffff;
+  --text: #ffffff;
   /* ... other variables */
 }
 ```
-
-**Caution:** The site uses a carefully designed dark theme. Changing colors extensively may affect the visual design. It's recommended to keep the dark aesthetic.
 
 ---
 
 ## :computer: Local Development
 
-### Prerequisites
-A modern web browser (Chrome, Firefox, Edge, Safari).
-
 ### Run Locally
 
-**Option 1:** Double-click `run-preview.bat` (Windows)
+**Option 1: Direct Batch Script (Windows)**
+Double-click `run-preview.bat` to spin up a quick server or open the pages.
 
-**Option 2:** Open `index.html` directly in your browser, OR use a local server:
+**Option 2: Using Vercel CLI (Recommended for Routing)**
+Since the website uses client-side routing, page reloads on paths like `/store/ranks` require redirection logic.
+```bash
+# Install Vercel CLI
+npm install -g vercel
 
+# Run development server with vercel.json routing
+vercel dev
+```
+
+**Option 3: Quick Local Server**
 ```bash
 # Python 3
 python -m http.server 8000
 
-# Or using npx (if Node.js installed)
+# Or using npx
 npx serve
 ```
-
-Then visit `http://localhost:8000` (or `https://localhost:8000` if using HTTPS)
+*Note: If using Python or standard static servers, manual browser reloads on dynamic paths (e.g. `/store/ranks`) may return 404s. Use Vercel dev for full routing emulation.*
 
 ---
 
 ## :warning: Important Notes for Public Deployment
 
-1. **Remove sensitive data:** This repo is for frontend only. Do NOT include backend configurations or payment processing logic.
-2. **Discord category name:** Ensure your Discord server has a ticket category that users can create tickets in. Update the instructions in `cart.html` if using a different category name.
-3. **Terms & Policies:** Update the Policies section in `index.html` with your actual refund/terms policies.
+1. **Remove sensitive data:** Ensure you do not commit any secret variables or private staff details.
+2. **Discord category & bot:** Ensure your Discord server has a designated ticket system corresponding to the instructions given in `cart.html`.
+3. **Terms & Policies:** Customize the Terms of Service, Privacy Policy, and Refund Policy under the policies grid in `index.html` (lines 124-137) before launching.
 
 ---
 

@@ -56,6 +56,22 @@ function initHeroParticles() {
   }
 }
 
+// ━━ HERO VIDEO ━━
+function initHeroVideo() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const video = document.createElement('video');
+  video.className = 'hero-video';
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.src = 'assets/images/background.mp4';
+  video.addEventListener('canplaythrough', () => video.classList.add('ready'), { once: true });
+  hero.insertBefore(video, hero.firstChild);
+  if (video.readyState >= 4) video.classList.add('ready');
+}
+
 // ━━ IP COPY ━━
 function initIPCopy() {
   const el = document.getElementById('ipCopy');
@@ -75,14 +91,55 @@ function initIPCopy() {
   });
 }
 
+// ━━ FLIP FADE TEXT ━━
+function initFlipFade() {
+  const el = document.querySelector('.flip-fade-wrap');
+  if (!el) return;
+
+  const phrases = ['Welcome to EclipX MC', 'Dominate the MCVerse'];
+
+  phrases.forEach((phrase, idx) => {
+    const word = document.createElement('span');
+    word.className = 'flip-fade-word';
+    if (idx === 0) word.classList.add('active');
+
+    for (let i = 0; i < phrase.length; i++) {
+      const letter = document.createElement('span');
+      letter.className = 'flip-fade-letter';
+      letter.style.setProperty('--i', i);
+      letter.textContent = phrase[i] === ' ' ? '\u00A0' : phrase[i];
+      word.appendChild(letter);
+    }
+
+    el.appendChild(word);
+  });
+
+  let current = 0;
+  const interval = 5000;
+
+  setInterval(() => {
+    const words = el.children;
+    const prev = current;
+    current = (current + 1) % words.length;
+
+    words[prev].classList.remove('active');
+    words[prev].classList.add('exiting');
+    words[current].classList.add('active');
+
+    setTimeout(() => {
+      words[prev].classList.remove('exiting');
+    }, 2000);
+  }, interval);
+}
+
 // ━━ ROUTING SYSTEM ━━
 const Router = {
   routes: {
     '/': 'hero',
-    '/team': 'team',
     '/store': 'store',
-    '/policies': 'policies',
-    '/faq': 'faq'
+    '/vote': 'vote',
+    '/faq': 'faq',
+    '/policies': 'policies'
   },
 
   init() {
@@ -91,10 +148,10 @@ const Router = {
       const anchor = e.target.closest('a');
       if (!anchor) return;
 
-const href = anchor.getAttribute('href');
-if (!href) return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
 
-// Handle sidebar links specially
+      // Handle sidebar links specially
       if (anchor.classList.contains('sidebar-link')) {
         e.preventDefault();
         const categoryPath = anchor.getAttribute('data-category-path');
@@ -183,20 +240,20 @@ if (!href) return;
   },
 
   updateNavbarActive(path) {
-    const links = document.querySelectorAll('.spotlight-nav-link');
+    const links = document.querySelectorAll('.spotlight-link');
     links.forEach(link => {
       const href = link.getAttribute('href');
-      const targetPath = href === '#' ? '/' : '/' + href.substring(1);
-      
-      if (path === targetPath) {
-        link.classList.add('active');
-        // Update spotlight nav indicator if needed
-        const idx = link.getAttribute('data-index');
-        if (idx !== null && typeof updateAmbience === 'function') {
-           updateAmbience(parseInt(idx));
-        }
+      let targetPath;
+      if (href.includes('#')) {
+        targetPath = '/' + href.substring(href.indexOf('#') + 1);
       } else {
-        link.classList.remove('active');
+        targetPath = '/';
+      }
+      
+      const isActive = path === targetPath || (path === '/store' && targetPath === '/store') || (path === '/vote' && targetPath === '/vote') || (path === '/faq' && targetPath === '/faq') || (path === '/policies' && targetPath === '/policies');
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        updateAmbience(parseInt(link.getAttribute('data-index')));
       }
     });
   }
@@ -258,10 +315,10 @@ function initCardTilt() {
 }
 
 const CART_STORAGE_KEY = 'store_cart';
+const INR_EXCHANGE_RATE = 83;
 
-function formatCurrency(amount) {
-  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+
+let currentCurrency = 'USD';
 
 function getCart() {
   try {
@@ -273,6 +330,88 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+}
+
+function formatCurrency(amount) {
+  if (currentCurrency === 'INR') {
+    return (amount * INR_EXCHANGE_RATE).toLocaleString('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+function initCurrencySwitcher() {
+  const switcher = document.getElementById('currencySwitcher');
+  if (!switcher) return;
+
+  const btn = switcher.querySelector('.currency-switcher-btn');
+  const currentLabel = switcher.querySelector('.currency-switcher-current');
+  const options = switcher.querySelectorAll('.currency-option');
+
+  const savedCurrency = localStorage.getItem('store_currency');
+  if (savedCurrency && (savedCurrency === 'USD' || savedCurrency === 'INR')) {
+    currentCurrency = savedCurrency;
+  }
+
+  currentLabel.textContent = currentCurrency;
+  options.forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('data-currency') === currentCurrency);
+  });
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    switcher.classList.toggle('open');
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const currency = opt.getAttribute('data-currency');
+      if (currency === currentCurrency) {
+        switcher.classList.remove('open');
+        return;
+      }
+      currentCurrency = currency;
+      localStorage.setItem('store_currency', currency);
+      currentLabel.textContent = currency;
+      options.forEach(o => o.classList.toggle('active', o.getAttribute('data-currency') === currency));
+      switcher.classList.remove('open');
+      updateAllDisplayedPrices();
+    });
+  });
+
+  document.addEventListener('click', () => {
+    switcher.classList.remove('open');
+  });
+}
+
+function updateAllDisplayedPrices() {
+  // 1. Update product cards
+  document.querySelectorAll('.package-card').forEach(card => {
+    const rawPrice = parseFloat(card.getAttribute('data-product-price'));
+    if (!isNaN(rawPrice)) {
+      const priceEl = card.querySelector('.package-price');
+      if (priceEl) priceEl.textContent = formatCurrency(rawPrice);
+    }
+  });
+
+  // 2. Update modal price if modal is open
+  const modal = document.getElementById('productModal');
+  if (modal && modal.classList.contains('active')) {
+    const rawPrice = parseFloat(modal.getAttribute('data-product-price'));
+    if (!isNaN(rawPrice)) {
+      const modalPriceEl = document.getElementById('modalProductPrice');
+      if (modalPriceEl) modalPriceEl.textContent = formatCurrency(rawPrice);
+    }
+  }
+
+  // 3. Re-render cart page if we're on it
+  if (document.getElementById('cart-items')) {
+    renderCartPage();
+  }
 }
 
 function getProductFromCard(card) {
@@ -396,6 +535,7 @@ function removeCartItem(productId) {
   updateCartBadge();
 }
 
+// initCartPage
 function initCartPage() {
   renderCartPage();
   const cartItemsContainer = document.getElementById('cart-items');
@@ -438,7 +578,7 @@ function initCartPage() {
 
   checkoutBtn?.addEventListener('click', (e) => {
     e.preventDefault();
-    window.location.href = 'https://discord.gg/pvc3CJpKaY';
+    window.location.href = 'https://dsc.gg/eclipxmc/';
   });
 }
 
@@ -486,6 +626,7 @@ function initProductModal() {
   if (!modal) return;
 
   const showModal = (product) => {
+    modal.setAttribute('data-product-price', product.price);
     document.getElementById('modalProductImg').src = product.image;
     document.getElementById('modalProductTitle').textContent = product.title;
     document.getElementById('modalProductPrice').textContent = formatCurrency(product.price);
@@ -544,6 +685,7 @@ function initFeaturedCards() {
   });
 }
 
+// BACK TO TOP
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -566,7 +708,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initScrollReveal();
   initHeroParticles();
+  initHeroVideo();
   initIPCopy();
+  initFlipFade();
   initPreloader();
   initCardTilt();
   initCartSystem();
@@ -574,6 +718,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductModal();
   initFeaturedCards();
   initBackToTop();
+  initCurrencySwitcher();
+  updateAllDisplayedPrices();
 });
 
 // STORE PREVIEW TABS
@@ -646,57 +792,123 @@ function switchStoreTab(el, category, updateUrl = true) {
   }, 300);
 }
 
-// SPOTLIGHT NAVBAR LOGIC
+// SPOTLIGHT NAVBAR
 (function() {
-  const nav = document.querySelector('.spotlight-nav');
+  const nav = document.getElementById('spotlightNav');
   if (!nav) return;
 
-  const links = nav.querySelectorAll('.spotlight-nav-link');
   let activeIndex = 0;
-  let currentAmbienceX = 0;
-  let targetAmbienceX = 0;
+  let ambienceX = 0;
+  let ambienceVelocity = 0;
+  let spotlightX = 0;
+  let spotlightVelocity = 0;
 
-  window.updateAmbience = function(index, immediate = false) {
-    const item = links[index];
-    if (!item) return;
-    
-    const navRect = nav.getBoundingClientRect();
-    const itemRect = item.getBoundingClientRect();
-    targetAmbienceX = itemRect.left - navRect.left + itemRect.width / 2;
-    
-    if (immediate) {
-      currentAmbienceX = targetAmbienceX;
-      nav.style.setProperty('--ambience-x', `${currentAmbienceX}px`);
-    }
-  };
-
-  links.forEach((link, idx) => {
+  nav.querySelectorAll('.spotlight-link').forEach((link, idx) => {
     if (link.classList.contains('active')) activeIndex = idx;
-    // Clicks are now handled by Router.init()
   });
 
-  function animate() {
-    const stiffness = 0.15;
-    const friction = 0.8;
-    let velocity = (targetAmbienceX - currentAmbienceX) * stiffness;
-    currentAmbienceX += velocity;
-    nav.style.setProperty('--ambience-x', `${currentAmbienceX}px`);
-    requestAnimationFrame(animate);
+  function getItemCenter(index) {
+    const item = nav.querySelector(`[data-index="${index}"]`);
+    if (!item) return null;
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    return itemRect.left - navRect.left + itemRect.width / 2;
   }
-  
+
+  window.updateAmbience = function(index) {
+    const targetX = getItemCenter(index);
+    if (targetX === null) return;
+    ambienceX = targetX;
+    nav.style.setProperty('--ambience-x', `${targetX}px`);
+  };
+
+  function springToTarget() {
+    const targetX = getItemCenter(activeIndex);
+    if (targetX === null) return;
+
+    const stiffness = 0.08;
+    const damping = 0.75;
+    
+    function tick() {
+      const dx = targetX - ambienceX;
+      ambienceVelocity += dx * stiffness;
+      ambienceVelocity *= damping;
+      ambienceX += ambienceVelocity;
+      nav.style.setProperty('--ambience-x', `${ambienceX}px`);
+      
+      if (Math.abs(dx) > 0.5 || Math.abs(ambienceVelocity) > 0.1) {
+        requestAnimationFrame(tick);
+      } else {
+        ambienceX = targetX;
+        nav.style.setProperty('--ambience-x', `${targetX}px`);
+      }
+    }
+    tick();
+  }
+
+  function springSpotlightTo(targetX) {
+    const stiffness = 0.06;
+    const damping = 0.7;
+
+    function tick() {
+      const dx = targetX - spotlightX;
+      spotlightVelocity += dx * stiffness;
+      spotlightVelocity *= damping;
+      spotlightX += spotlightVelocity;
+      nav.style.setProperty('--spotlight-x', `${spotlightX}px`);
+
+      if (Math.abs(dx) > 0.5 || Math.abs(spotlightVelocity) > 0.1) {
+        requestAnimationFrame(tick);
+      } else {
+        spotlightX = targetX;
+        nav.style.setProperty('--spotlight-x', `${targetX}px`);
+      }
+    }
+    tick();
+  }
+
   setTimeout(() => {
-    updateAmbience(activeIndex, true);
-    animate();
-  }, 100);
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      spotlightX = targetX;
+      ambienceX = targetX;
+      nav.style.setProperty('--spotlight-x', `${targetX}px`);
+      nav.style.setProperty('--ambience-x', `${targetX}px`);
+    }
+  }, 50);
+
+  nav.addEventListener('click', (e) => {
+    const link = e.target.closest('.spotlight-link');
+    if (!link) return;
+    const idx = parseInt(link.getAttribute('data-index'));
+    if (!isNaN(idx)) {
+      activeIndex = idx;
+      springToTarget();
+    }
+  });
 
   nav.addEventListener('mousemove', (e) => {
-    nav.classList.add('is-hovered');
     const rect = nav.getBoundingClientRect();
     const x = e.clientX - rect.left;
+    spotlightX = x;
     nav.style.setProperty('--spotlight-x', `${x}px`);
+    nav.classList.add('is-hovered');
   });
 
   nav.addEventListener('mouseleave', () => {
     nav.classList.remove('is-hovered');
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      springSpotlightTo(targetX);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    const targetX = getItemCenter(activeIndex);
+    if (targetX !== null) {
+      updateAmbience(activeIndex);
+      spotlightX = targetX;
+      nav.style.setProperty('--spotlight-x', `${targetX}px`);
+    }
   });
 })();

@@ -40,14 +40,16 @@
 
   <!-- SPOTLIGHT NAVBAR -->
   <div class="spotlight-nav-wrapper">
-    <nav class="spotlight-nav">
+    <nav class="spotlight-nav" id="spotlightNav">
       <ul class="spotlight-nav-list">
-        <li class="spotlight-nav-item"><a href="#" class="spotlight-nav-link active" data-index="0"><i class="ti ti-home"></i>Home</a></li>
-        <li class="spotlight-nav-item"><a href="#store" class="spotlight-nav-link" data-index="1"><i class="ti ti-shopping-cart"></i>Store</a></li>
-        <li class="spotlight-nav-item"><a href="#policies" class="spotlight-nav-link" data-index="2"><i class="ti ti-file-text"></i>Policies</a></li>
+        <li><a href="#" class="spotlight-link active" data-index="0"><i class="ti ti-home"></i> Home</a></li>
+        <li><a href="#store" class="spotlight-link" data-index="1"><i class="ti ti-shopping-cart"></i> Store</a></li>
+        <li><a href="#vote" class="spotlight-link" data-index="2"><i class="ti ti-ballot"></i> Vote</a></li>
+        <li><a href="#faq" class="spotlight-link" data-index="3"><i class="ti ti-help-circle"></i> FAQ</a></li>
+        <li><a href="#policies" class="spotlight-link" data-index="4"><i class="ti ti-file-text"></i> Policies</a></li>
       </ul>
-      <div class="spotlight-nav-light"></div>
-      <div class="spotlight-nav-ambience"></div>
+      <div class="spotlight-glow" id="spotlightGlow"></div>
+      <div class="spotlight-ambience" id="spotlightAmbience"></div>
     </nav>
   </div>
 
@@ -90,10 +92,14 @@
 
     <div class="hero-content">
       <img src="assets/images/eclipxmc_logo.png" alt="Site Logo" class="hero-logo" />
-      <p class="hero-subtitle">Welcome to EclipX MC | Dominate the MCVerse</p>
+      <p class="hero-subtitle flip-fade-wrap"></p>
       <div class="hero-cta">
-        <a href="#store" class="btn-primary"><i class="ti ti-shopping-cart"></i> Visit Store</a>
-        <a href="https://discord.gg/pvc3CJpKaY" class="btn-outline"><i class="ti ti-brand-discord"></i> Join Discord</a>
+        <a href="#store" class="rg-button">
+          <span class="rg-shine"><span></span></span>
+          <span class="rg-bg"></span>
+          <span class="rg-label"><i class="ti ti-shopping-cart"></i> Visit Store</span>
+        </a>
+        <a href="https://dsc.gg/eclipxmc/" class="candy-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor" width="16" height="12"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg> Join Discord</a>
 
       </div>
       <div class="ip-copy reveal" id="ipCopy" title="Click to copy IP">
@@ -220,67 +226,15 @@
             </div>
             <ul class="rewards-list">
               <li>
-                <div class="reward-icon"><img src="assets/images/coin.png" alt="" style="width:28px;height:28px;object-fit:contain;"></div>
-                <div class="reward-text">
-                  <strong>500 Epix Dust</strong>
-                  <span>Spend in the Epix Dust shop</span>
-                </div>
-              </li>
-              <li>
                 <div class="reward-icon"><i class="ti ti-key"></i></div>
                 <div class="reward-text">
                   <strong>1x Vote Key</strong>
                   <span>Open the Vote Crate</span>
                 </div>
               </li>
-              <li>
-                <div class="reward-icon"><i class="ti ti-heart"></i></div>
-                <div class="reward-text">
-                  <strong>Extra Heart</strong>
-                  <span>Temporary boost (Lifesteal)</span>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- TEAM -->
-  <section class="team" id="team">
-    <h2 class="reveal">The Team</h2>
-    <p class="section-sub reveal">Meet the people behind the platform</p>
-
-    <div class="team-pfp-grid">
-      <!-- OWNER -->
-      <div class="team-member-pfp reveal">
-        <div class="pfp-container">
-          <img src="assets/images/team-1.png" alt="Owner" />
-          <div class="pfp-glow"></div>
-        </div>
-        <span class="pfp-name">kageo.nyx</span>
-        <span class="pfp-role">Founder and Owner</span>
-      </div>
-      <!-- ADMIN -->
-      <div class="team-member-pfp reveal">
-        <div class="pfp-container">
-          <img src="assets/images/team-2.png" alt="Admin" />
-          <div class="pfp-glow"></div>
-        </div>
-        <span class="pfp-name">okotama_69</span>
-        <span class="pfp-role">Co-Owner</span>
-      </div>
-      <!-- MODERATOR -->
-      <div class="team-member-pfp reveal">
-        <div class="pfp-container">
-          <img src="assets/images/team-3.png" alt="Developer" />
-          <div class="pfp-glow"></div>
-        </div>
-        <span class="pfp-name">zephy.rixh</span>
-        <span class="pfp-role">Web Designer</span>
       </div>
     </div>
   </section>
@@ -320,21 +274,31 @@
             <i class="ti ti-search search-icon"></i>
             <input type="text" id="productSearch" placeholder="Search for packages..." autocomplete="off">
           </div>
+          <div class="currency-switcher store-currency-switcher" id="currencySwitcher">
+            <button class="currency-switcher-btn">
+              <span class="currency-switcher-current">USD</span>
+              <i class="ti ti-chevron-down"></i>
+            </button>
+            <div class="currency-switcher-dropdown">
+              <button class="currency-option active" data-currency="USD">USD</button>
+              <button class="currency-option" data-currency="INR">INR</button>
+            </div>
+          </div>
         </div>
         
         <!-- FEATURED SECTION -->
         <div id="featured-section" class="featured-packages-wrapper reveal">
           <h3 class="featured-title"><i class="ti ti-star"></i> Featured Packages</h3>
           <div class="featured-grid">
-            <!-- Elite Rank Featured -->
+            <!-- EcliptiX Featured -->
             <div class="featured-card card" data-featured-category="ranks">
               <div class="featured-card-badge">Best Seller</div>
               <div class="featured-card-icon">
                 <i class="ti ti-medal"></i>
               </div>
               <div class="featured-card-info">
-                <h4>Elite Rank</h4>
-                <p>Unlock everything the server has to offer.</p>
+                <h4>EcliptiX</h4>
+                <p>The ultimate rank — unlimited power awaits.</p>
                 <span class="featured-card-link">View Ranks <i class="ti ti-arrow-right"></i></span>
               </div>
             </div>
@@ -362,11 +326,11 @@
 
         <div class="package-grid">
           
-          <!-- Rank 1 -->
-          <div class="card package-card reveal" data-category="ranks" data-product-id="vip-rank" data-product-title="VIP Rank" data-product-price="4.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Elevate your experience with our premium ranks. Get exclusive perks, commands, and a special prefix in-game!" data-product-ingame="VIP prefix in chat, /fly command, /hat command, /nick command, colored chat, access to VIP-only areas, and a special join message." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game. Join the server and use /rank to see your new perks!">
-            <img src="assets/images/eclipxmc_logo.png" alt="VIP Rank" class="package-img">
-            <div class="package-title">VIP Rank</div>
-            <div class="package-price">4.99 USD</div>
+          <!-- Rank 1: Prime -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="prime-rank" data-product-title="Prime" data-product-price="1.80" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Start your journey with the Prime rank. Get essential perks and stand out from the crowd!" data-product-ingame="Prime prefix in chat, /fly command, /hat command, colored chat, and access to Prime-only areas." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="Prime" class="package-img">
+            <div class="package-title">Prime</div>
+            <div class="package-price">$1.80</div>
             <div class="package-actions">
               <a href="#" class="btn-icon" title="View details">
                 <i class="ti ti-info-circle"></i>
@@ -375,11 +339,63 @@
             </div>
           </div>
 
-          <!-- Rank 2 -->
-          <div class="card package-card reveal" data-category="ranks" data-product-id="elite-rank" data-product-title="Elite Rank" data-product-price="9.99" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="The Elite rank for those who want the best. Includes all VIP perks plus advanced commands and exclusive access!" data-product-ingame="Elite prefix in chat, all VIP perks plus: /feed command, /heal command, /echest command, /craft command, /tpa command, Elite-only areas, and priority queue access." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game. Join the server and use /rank to see your new perks!">
-            <img src="assets/images/eclipxmc_logo.png" alt="Elite Rank" class="package-img">
-            <div class="package-title">Elite Rank</div>
-            <div class="package-price">9.99 USD</div>
+          <!-- Rank 2: Omega -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="omega-rank" data-product-title="Omega" data-product-price="3.60" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Level up with Omega. Unlock more commands and exclusive in-game perks!" data-product-ingame="Omega prefix in chat, all Prime perks plus: /nick command, /feed command, and access to Omega-only areas." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="Omega" class="package-img">
+            <div class="package-title">Omega</div>
+            <div class="package-price">$3.60</div>
+            <div class="package-actions">
+              <a href="#" class="btn-icon" title="View details">
+                <i class="ti ti-info-circle"></i>
+              </a>
+              <a href="./cart.html" class="btn-primary add-to-cart"><i class="ti ti-plus"></i> Add to cart</a>
+            </div>
+          </div>
+
+          <!-- Rank 3: GlitchX -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="glitchx-rank" data-product-title="GlitchX" data-product-price="5.41" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="GlitchX takes you further. Enhanced perks and priority access across the server!" data-product-ingame="GlitchX prefix in chat, all Omega perks plus: /heal command, /craft command, colored chat, and priority queue access." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="GlitchX" class="package-img">
+            <div class="package-title">GlitchX</div>
+            <div class="package-price">$5.41</div>
+            <div class="package-actions">
+              <a href="#" class="btn-icon" title="View details">
+                <i class="ti ti-info-circle"></i>
+              </a>
+              <a href="./cart.html" class="btn-primary add-to-cart"><i class="ti ti-plus"></i> Add to cart</a>
+            </div>
+          </div>
+
+          <!-- Rank 4: Nexus -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="nexus-rank" data-product-title="Nexus" data-product-price="7.22" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="The Nexus rank unlocks the full potential of your gameplay experience!" data-product-ingame="Nexus prefix in chat, all GlitchX perks plus: /echest command, /tpa command, special join message, and Nexus-only areas." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="Nexus" class="package-img">
+            <div class="package-title">Nexus</div>
+            <div class="package-price">$7.22</div>
+            <div class="package-actions">
+              <a href="#" class="btn-icon" title="View details">
+                <i class="ti ti-info-circle"></i>
+              </a>
+              <a href="./cart.html" class="btn-primary add-to-cart"><i class="ti ti-plus"></i> Add to cart</a>
+            </div>
+          </div>
+
+          <!-- Rank 5: Oblivion -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="oblivion-rank" data-product-title="Oblivion" data-product-price="8.42" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="Oblivion is for the elite. Near-complete access with top-tier commands and perks!" data-product-ingame="Oblivion prefix in chat, all Nexus perks plus: /fly speed, vanish access, and exclusive Oblivion-only zones." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="Oblivion" class="package-img">
+            <div class="package-title">Oblivion</div>
+            <div class="package-price">$8.42</div>
+            <div class="package-actions">
+              <a href="#" class="btn-icon" title="View details">
+                <i class="ti ti-info-circle"></i>
+              </a>
+              <a href="./cart.html" class="btn-primary add-to-cart"><i class="ti ti-plus"></i> Add to cart</a>
+            </div>
+          </div>
+
+          <!-- Rank 6: EcliptiX -->
+          <div class="card package-card reveal" data-category="ranks" data-product-id="ecliptix-rank" data-product-title="EcliptiX" data-product-price="9.63" data-product-image="assets/images/eclipxmc_logo.png" data-product-description="The ultimate EcliptiX rank. Everything the server has to offer — unlimited power!" data-product-ingame="EcliptiX prefix in chat, all Oblivion perks plus: every command unlocked, exclusive accessories, and highest priority queue." data-product-howto="Purchase the rank from our store. Once purchased, it will be automatically applied to your account in-game.">
+            <img src="assets/images/eclipxmc_logo.png" alt="EcliptiX" class="package-img">
+            <div class="package-title">EcliptiX</div>
+            <div class="package-price">$9.63</div>
             <div class="package-actions">
               <a href="#" class="btn-icon" title="View details">
                 <i class="ti ti-info-circle"></i>
@@ -390,7 +406,7 @@
 
           <!-- Epix Dust 1 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="15600-epix-dust" data-product-title="15600 Epix Dust (LIFESTEAL)" data-product-price="12.20" data-product-image="assets/images/coin.png" data-product-description="A massive bundle of 15,600 Epix Dust to spend in the LifeSteal Epix Dust shop. Get the best items and perks instantly!" data-product-ingame="15,600 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">15600 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">12.20 USD</div>
             <div class="package-actions">
@@ -403,7 +419,7 @@
 
           <!-- Epix Dust 2 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="7800-epix-dust" data-product-title="7800 Epix Dust (LIFESTEAL)" data-product-price="6.50" data-product-image="assets/images/coin.png" data-product-description="7,800 Epix Dust for your LifeSteal adventures. Perfect for getting those essential keys and upgrades!" data-product-ingame="7,800 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">7800 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">6.50 USD</div>
             <div class="package-actions">
@@ -416,7 +432,7 @@
 
           <!-- Epix Dust 3 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="5660-epix-dust" data-product-title="5660 Epix Dust (LIFESTEAL)" data-product-price="4.60" data-product-image="assets/images/coin.png" data-product-description="Boost your Epix Dust balance with 5,660 Epix Dust. Great value for any LifeSteal player!" data-product-ingame="5,660 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
             <div class="package-title">5660 Epix Dust (LIFESTEAL)</div>
             <div class="package-price">4.60 USD</div>
             <div class="package-actions">
@@ -522,12 +538,12 @@
   <section class="discord-cta reveal">
     <div class="discord-cta-content">
       <div class="discord-cta-icon">
-        <i class="ti ti-brand-discord"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor" width="32" height="24"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
       </div>
       <h2>Join the Community</h2>
       <p>Stay updated with the latest news, participate in giveaways, and get support from our dedicated team.</p>
-      <a href="https://discord.gg/pvc3CJpKaY" class="btn-primary btn-discord">
-        <i class="ti ti-brand-discord"></i> Join Discord Server
+      <a href="https://dsc.gg/eclipxmc/" class="candy-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor" width="16" height="12"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg> Join Discord Server
       </a>
     </div>
     <div class="discord-cta-bg"></div>
@@ -548,10 +564,10 @@
       <div class="footer-center">
         <a href="#" class="footer-link">Home</a>
         <a href="#store" class="footer-link">Store</a>
-        <a href="https://discord.gg/pvc3CJpKaY" class="footer-link">Discord</a>
+        <a href="https://dsc.gg/eclipxmc/" class="footer-link">Discord</a>
       </div>
       <div class="footer-right">
-        <a href="https://discord.gg/pvc3CJpKaY" class="social-icon" title="Discord">
+        <a href="https://dsc.gg/eclipxmc/" class="social-icon" title="Discord">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.211.375-.444.864-.607 1.25a18.27 18.27 0 00-5.487 0c-.163-.386-.395-.875-.608-1.25a.077.077 0 00-.079-.037 19.736 19.736 0 00-4.885 1.515.07.07 0 00-.033.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.027c.462-.63.873-1.295 1.226-1.994a.076.076 0 00-.042-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.294.075.075 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.075.075 0 01.079.009c.12.098.246.198.373.294a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.076.076 0 00-.041.107c.36.699.77 1.364 1.225 1.994a.076.076 0 00.084.028 19.86 19.86 0 005.993-3.03.077.077 0 00.032-.054c.5-4.917-.838-9.19-3.549-12.99a.06.06 0 00-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.974-2.419 2.157-2.419 1.183 0 2.157 1.085 2.157 2.42 0 1.333-.974 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.974-2.419 2.157-2.419 1.183 0 2.157 1.085 2.157 2.42 0 1.333-.974 2.418-2.157 2.418z" />
           </svg>
