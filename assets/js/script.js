@@ -57,21 +57,6 @@ function initHeroParticles() {
 }
 
 // ━━ HERO VIDEO ━━
-function initHeroVideo() {
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  const video = document.createElement('video');
-  video.className = 'hero-video';
-  video.autoplay = true;
-  video.muted = true;
-  video.loop = true;
-  video.playsInline = true;
-  video.src = 'assets/images/background.mp4';
-  video.addEventListener('canplaythrough', () => video.classList.add('ready'), { once: true });
-  hero.insertBefore(video, hero.firstChild);
-  if (video.readyState >= 4) video.classList.add('ready');
-}
-
 // ━━ IP COPY ━━
 function initIPCopy() {
   const el = document.getElementById('ipCopy');
@@ -708,7 +693,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initScrollReveal();
   initHeroParticles();
-  initHeroVideo();
   initIPCopy();
   initFlipFade();
   initPreloader();
