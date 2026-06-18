@@ -303,7 +303,7 @@ const CART_STORAGE_KEY = 'store_cart';
 const INR_EXCHANGE_RATE = 83;
 
 
-let currentCurrency = 'USD';
+let currentCurrency = 'INR';
 
 function getCart() {
   try {
@@ -415,6 +415,9 @@ function addToCart(product, quantity = 1) {
   const existing = cart[product.id];
   if (existing) {
     existing.quantity += quantity;
+    existing.title = product.title;
+    existing.price = product.price;
+    existing.image = product.image;
   } else {
     cart[product.id] = { ...product, quantity };
   }

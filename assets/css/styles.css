@@ -1002,8 +1002,17 @@ section { padding: 50px 5vw; position: relative; }
   font-weight: 500;
   margin-bottom: 4px;
   min-height: 45px;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.package-price {
+  font-size: 14px;
+  color: var(--text-2);
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
 }
 .package-price {
   font-size: 14px;
@@ -2298,6 +2307,8 @@ section { padding: 50px 5vw; position: relative; }
 .store-currency-switcher .currency-switcher-dropdown {
   left: 0;
   right: auto;
+  bottom: calc(100% + 8px);
+  top: auto;
 }
 
 @media (max-width: 768px) {
@@ -2309,7 +2320,7 @@ section { padding: 50px 5vw; position: relative; }
     justify-content: center;
   }
   .store-currency-switcher .currency-switcher-dropdown {
-    bottom: calc(100% + 6px);
+    bottom: calc(100% + 8px);
     top: auto;
     left: 50%;
     transform: translateX(-50%) translateY(4px);
@@ -2358,7 +2369,7 @@ section { padding: 50px 5vw; position: relative; }
 
 .currency-switcher-dropdown {
   position: absolute;
-  top: calc(100% + 6px);
+  bottom: calc(100% + 8px);
   right: 0;
   min-width: 100%;
   background: rgba(20, 20, 20, 0.9);
@@ -2367,7 +2378,7 @@ section { padding: 50px 5vw; position: relative; }
   padding: 4px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-4px);
+  transform: translateY(4px);
   transition: all 0.2s ease;
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
