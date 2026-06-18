@@ -563,6 +563,7 @@ section { padding: 40px 5vw; position: relative; }
   transform: translateZ(0);
   backface-visibility: hidden;
   background: url(../images/background.jpg) center/cover no-repeat;
+  background-position: calc(50% - 10px) center;
 }
 .hero::before {
   content: '';
