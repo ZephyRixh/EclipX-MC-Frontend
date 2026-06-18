@@ -300,13 +300,19 @@ function initCardTilt() {
 }
 
 const CART_STORAGE_KEY = 'store_cart';
-const INR_EXCHANGE_RATE = 83;
+const INR_EXCHANGE_RATE = 95;
+const CART_VERSION = 2;
 
-
-let currentCurrency = 'INR';
+let currentCurrency = 'USD';
 
 function getCart() {
   try {
+    const savedVer = localStorage.getItem('store_cart_ver');
+    if (savedVer !== String(CART_VERSION)) {
+      localStorage.removeItem(CART_STORAGE_KEY);
+      localStorage.setItem('store_cart_ver', String(CART_VERSION));
+      return {};
+    }
     return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || {};
   } catch (error) {
     return {};
@@ -315,6 +321,7 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem('store_cart_ver', String(CART_VERSION));
 }
 
 function formatCurrency(amount) {
@@ -478,17 +485,6 @@ function renderCartPage() {
           <strong class="cart-item-title">${escapeHTML(item.title)}</strong>
           <div class="cart-item-meta">${escapeHTML(formatCurrency(item.price))} each</div>
         </div>
-        <div class="cart-item-controls">
-          <div class="cart-quantity">
-            <button type="button" class="qty-button" data-action="decrease">-</button>
-            <span class="qty-value">${escapeHTML(String(item.quantity))}</span>
-            <button type="button" class="qty-button" data-action="increase">+</button>
-          </div>
-          <div class="total-row">
-            <span>Total</span>
-            <strong>${escapeHTML(formatCurrency(item.price * item.quantity))}</strong>
-          </div>
-        </div>
       </div>
       <button class="cart-remove" type="button" data-action="remove">Remove</button>
     </article>
@@ -501,19 +497,6 @@ function renderCartPage() {
   const countEl = document.getElementById('cart-count');
   if (subtotalEl) subtotalEl.textContent = formatCurrency(total);
   if (countEl) countEl.textContent = `${count} item${count === 1 ? '' : 's'}`;
-}
-
-function updateCartItem(productId, change) {
-  const cart = getCart();
-  const item = cart[productId];
-  if (!item) return;
-  item.quantity = Math.max(1, item.quantity + change);
-  if (item.quantity <= 0) {
-    delete cart[productId];
-  }
-  saveCart(cart);
-  renderCartPage();
-  updateCartBadge();
 }
 
 function removeCartItem(productId) {
@@ -539,8 +522,6 @@ function initCartPage() {
     const productId = itemCard?.getAttribute('data-product-id');
     if (!productId) return;
 
-    if (action === 'increase') updateCartItem(productId, 1);
-    if (action === 'decrease') updateCartItem(productId, -1);
     if (action === 'remove') removeCartItem(productId);
   });
 
@@ -575,6 +556,10 @@ function initCartPage() {
 function initCartSystem() {
   initCartButtons();
   updateCartBadge();
+  if (document.getElementById('cart-items')) {
+    initCartPage();
+    return;
+  }
   const modal = document.getElementById('productModal');
   const closeBtn = document.getElementById('closeProduct');
   const overlay = modal?.querySelector('.modal-overlay');
