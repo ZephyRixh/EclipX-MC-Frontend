@@ -485,6 +485,9 @@ function renderCartPage() {
           <strong class="cart-item-title">${escapeHTML(item.title)}</strong>
           <div class="cart-item-meta">${escapeHTML(formatCurrency(item.price))} each</div>
         </div>
+        <div class="cart-item-qty">
+          Qty: ${item.quantity}
+        </div>
       </div>
       <button class="cart-remove" type="button" data-action="remove">Remove</button>
     </article>

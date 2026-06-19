@@ -1215,6 +1215,12 @@ section { padding: 40px 5vw; position: relative; }
   font-size: 14px;
 }
 
+.cart-item-qty {
+  color: var(--text-3);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .cart-remove {
   background: rgba(255,68,68,0.05);
   border: 1px solid rgba(255,68,68,0.2);
