@@ -836,54 +836,5 @@ function switchStoreTab(el, category, updateUrl = true) {
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    UX/UI ENHANCEMENTS
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-
-function initMobileMenu() {
-  const btn = document.getElementById('mobileMenuBtn');
-  const overlay = document.getElementById('mobileNavOverlay');
-  const backdrop = document.getElementById('mobileNavBackdrop');
-  const links = overlay?.querySelectorAll('.mobile-nav-link');
-  if (!btn || !overlay) return;
-
-  btn.addEventListener('click', () => {
-    const isOpen = btn.classList.toggle('active');
-    overlay.classList.toggle('active', isOpen);
-    overlay.setAttribute('aria-hidden', !isOpen);
-    btn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  function closeMenu() {
-    btn.classList.remove('active');
-    overlay.classList.remove('active');
-    overlay.setAttribute('aria-hidden', 'true');
-    btn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  backdrop?.addEventListener('click', closeMenu);
-
-  links?.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-}
-
-function initStatusIPCopy() {
-  document.querySelectorAll('.status-ip-copy').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const ip = btn.getAttribute('data-ip');
-      navigator.clipboard.writeText(ip).then(() => {
-        btn.classList.add('copied');
-        const icon = btn.querySelector('i');
-        if (icon) {
-          icon.className = 'ti ti-check';
-          setTimeout(() => {
-            icon.className = 'ti ti-copy';
-            btn.classList.remove('copied');
-          }, 2000);
-        }
-      });
-    });
-  });
-}
