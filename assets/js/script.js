@@ -732,13 +732,15 @@ function switchStoreTab(el, category, updateUrl = true) {
   }
 
   window.updateAmbience = function(index) {
-    if (getItemCenter(index) === null) return;
-    activeIndex = index;
-    springToTarget();
     const targetX = getItemCenter(index);
-    if (targetX !== null) {
-      springSpotlightTo(targetX);
-    }
+    if (targetX === null) return;
+    activeIndex = index;
+    ambienceVelocity = 0;
+    ambienceX = targetX;
+    nav.style.setProperty('--ambience-x', `${targetX}px`);
+    spotlightVelocity = 0;
+    spotlightX = targetX;
+    nav.style.setProperty('--spotlight-x', `${targetX}px`);
   };
 
   function springToTarget() {
