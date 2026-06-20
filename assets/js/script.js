@@ -898,6 +898,10 @@ function switchStoreTab(el, category, updateUrl = true) {
   });
 })();
 
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) location.reload();
+});
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    UX/UI ENHANCEMENTS
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
