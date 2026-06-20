@@ -407,12 +407,16 @@ function getProductFromCard(card) {
   return { id, title, price, image, category };
 }
 
-function addToCart(product, quantity = 1) {
+function addToCart(product, quantity = 1, replace = false) {
   if (!product || !product.id) return;
   const cart = getCart();
   const existing = cart[product.id];
   if (existing) {
-    existing.quantity += quantity;
+    if (replace) {
+      existing.quantity = quantity;
+    } else {
+      existing.quantity += quantity;
+    }
     existing.title = product.title;
     existing.price = product.price;
     existing.image = product.image;
@@ -439,7 +443,7 @@ function initCartButtons() {
       const card = button.closest('.package-card');
       const product = getProductFromCard(card);
       if (!product) return;
-      addToCart(product, 1);
+      addToCart(product, 1, true);
       updateCartBadge();
       const href = button.getAttribute('href');
       if (href) window.location.href = href;
@@ -616,7 +620,7 @@ function initCartSystem() {
     addToCartBtn.parentNode.replaceChild(newBtn, addToCartBtn);
     
     newBtn.addEventListener('click', () => {
-      addToCart(product, 1);
+      addToCart(product, 1, true);
       updateCartBadge();
       modal.classList.remove('active');
       document.body.style.overflow = '';
