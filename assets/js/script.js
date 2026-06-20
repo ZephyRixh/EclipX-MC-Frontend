@@ -387,6 +387,15 @@ function updateAllDisplayedPrices() {
   }
 }
 
+function getTotalDust(title, quantity) {
+  const match = title.match(/^(\d+(?:\+\d+)?)/);
+  if (!match) return null;
+  const dustPerUnit = match[1].includes('+')
+    ? match[1].split('+').reduce((s, n) => s + parseInt(n, 10), 0)
+    : parseInt(match[1], 10);
+  return dustPerUnit * quantity;
+}
+
 function getProductFromCard(card) {
   if (!card) return null;
   const id = card.getAttribute('data-product-id');
@@ -493,13 +502,16 @@ function renderCartPage() {
 
     const breakdownDiv = document.createElement('div');
     breakdownDiv.className = 'summary-breakdown';
-    breakdownDiv.innerHTML = items.map(item => `
+    breakdownDiv.innerHTML = items.map(item => {
+      const dustTotal = item.category === 'epix-dust' ? getTotalDust(item.title, item.quantity) : null;
+      const qtyDisplay = dustTotal !== null ? `${dustTotal} total dust` : `x${item.quantity}`;
+      return `
       <div class="summary-item-row">
         <span class="summary-item-name">${escapeHTML(item.title)}</span>
-        <span class="summary-item-qty">x${item.quantity}</span>
+        <span class="summary-item-qty">${qtyDisplay}</span>
         <span class="summary-item-total">${escapeHTML(formatCurrency(item.price * item.quantity))}</span>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
     summaryDetails.insertBefore(breakdownDiv, summaryDetails.querySelector('.subtotal'));
   }
 }
