@@ -1025,7 +1025,7 @@ section { padding: 40px 5vw; position: relative; }
 .package-img.gold-shadow { filter: drop-shadow(0 0 10px gold); }
 .package-img.purple-shadow { filter: drop-shadow(0 0 10px purple); }
 .package-title {
-  font-family: 'Minecraft', monospace;
+  font-family: var(--font);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.03em;
