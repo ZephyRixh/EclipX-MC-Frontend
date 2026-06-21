@@ -687,8 +687,8 @@ background-position: calc(50% - 10px) center;
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px 10px 24px;
+  gap: 8px;
+  padding: 8px 16px 8px 20px;
   cursor: pointer;
   user-select: none;
   font-family: var(--font);
@@ -821,6 +821,42 @@ background-position: calc(50% - 10px) center;
 .ip-copy.copied .ip-copy-icon {
   color: #4ade80;
   filter: drop-shadow(0 0 3px hsla(140, 100%, 70%, 0.8));
+}
+
+/* ━━ PLAYER COUNT ━━ */
+.player-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  margin-bottom: 10px;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  font-size: 13px;
+  animation: fadeUp .7s ease-out .8s both;
+}
+
+.player-count i {
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.player-count-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
+.player-count-value {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  min-width: 24px;
+  text-align: center;
 }
 
 /* Hero Particles */
@@ -1828,7 +1864,8 @@ background-position: calc(50% - 10px) center;
 .vote-links .vote-card:last-child {
   grid-column: 1 / -1;
   justify-self: center;
-  max-width: 50%;
+  max-width: calc(50% - 6px);
+  margin-top: 4px;
 }
 
 .vote-card:hover {

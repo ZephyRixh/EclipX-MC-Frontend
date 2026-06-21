@@ -686,6 +686,29 @@ function initBackToTop() {
   });
 }
 
+// ━━ PLAYER COUNT ━━
+function initPlayerCount() {
+  const valueEl = document.getElementById('playerCountValue');
+  if (!valueEl) return;
+
+  async function fetchCount() {
+    try {
+      const res = await fetch('https://api.mcsrvstat.us/2/play.eclipxmc.fun');
+      const data = await res.json();
+      if (data.online && data.players) {
+        valueEl.textContent = `${data.players.online}/${data.players.max}`;
+      } else {
+        valueEl.textContent = 'Offline';
+      }
+    } catch {
+      valueEl.textContent = '—';
+    }
+  }
+
+  fetchCount();
+  setInterval(fetchCount, 30000);
+}
+
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
@@ -698,6 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeaturedCards();
   initBackToTop();
   initCurrencySwitcher();
+  initPlayerCount();
   updateAllDisplayedPrices();
 });
 
