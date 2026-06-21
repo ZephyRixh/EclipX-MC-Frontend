@@ -1054,10 +1054,7 @@ background-position: calc(50% - 10px) center;
 .package-card:hover .package-img {
   transform: translateY(-5px) scale(1.05);
 }
-.package-card[data-category="ranks"] .package-img {
-  width: 256px;
-  height: 256px;
-}
+
 .package-img.gold-shadow { filter: drop-shadow(0 0 10px gold); }
 .package-img.purple-shadow { filter: drop-shadow(0 0 10px purple); }
 .package-title {
