@@ -1054,6 +1054,10 @@ background-position: calc(50% - 10px) center;
 .package-card:hover .package-img {
   transform: translateY(-5px) scale(1.05);
 }
+.package-card[data-category="ranks"] .package-img {
+  width: 256px;
+  height: 256px;
+}
 .package-img.gold-shadow { filter: drop-shadow(0 0 10px gold); }
 .package-img.purple-shadow { filter: drop-shadow(0 0 10px purple); }
 .package-title {
@@ -1086,6 +1090,7 @@ background-position: calc(50% - 10px) center;
   display: flex;
   gap: 8px;
   width: 100%;
+  margin-top: auto;
 }
 .package-actions .btn-primary {
   flex: 1;
@@ -1181,19 +1186,11 @@ background-position: calc(50% - 10px) center;
   border-color: rgba(255,255,255,0.2);
 }
 
-.cart-item[data-category="ranks"] {
-  grid-template-columns: 1fr auto;
-}
-
 @media(max-width: 600px) {
   .cart-item {
     grid-template-columns: 60px 1fr;
     gap: 10px;
     padding: 10px;
-  }
-  .cart-item[data-category="ranks"] {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
   .cart-item .cart-remove {
     grid-column: 1 / -1;
