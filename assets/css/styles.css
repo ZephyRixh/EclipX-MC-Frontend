@@ -2102,18 +2102,8 @@ section { padding: 40px 5vw; position: relative; }
 
 /* ━━ WELCOME SECTION ━━ */
 .welcome-section {
-  padding: 60px 5vw;
+  padding: 20px 5vw;
   width: 100%;
-  background: url(../images/welcome.jpg) center/cover no-repeat;
-  background-attachment: fixed;
-}
-.welcome-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 0;
-  pointer-events: none;
 }
 .welcome-container {
   max-width: 900px;
