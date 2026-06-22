@@ -391,8 +391,12 @@ function initCurrencySwitcher() {
 
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      closeAll();
-      switcher.classList.add('open');
+      if (switcher.classList.contains('open')) {
+        switcher.classList.remove('open');
+      } else {
+        closeAll();
+        switcher.classList.add('open');
+      }
     });
 
     options.forEach(opt => {
