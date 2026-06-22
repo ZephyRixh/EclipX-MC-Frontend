@@ -475,6 +475,7 @@ section { padding: 40px 5vw; position: relative; }
 
 .spotlight-link i {
   font-size: 16px;
+  vertical-align: -0.1em;
 }
 
 .cart-badge-nav {
