@@ -41,9 +41,10 @@
   <div class="spotlight-nav-wrapper">
     <nav class="spotlight-nav" id="spotlightNav" role="navigation" aria-label="Main navigation">
       <ul class="spotlight-nav-list">
-        <li><a href="#" class="spotlight-link active" data-index="0"><i class="ti ti-home"></i> Home</a></li>
-        <li><a href="#store" class="spotlight-link" data-index="1"><i class="ti ti-shopping-cart"></i> Store</a></li>
-        <li><a href="#policies" class="spotlight-link" data-index="2"><i class="ti ti-file-text"></i> Policies</a></li>
+        <li><a href="#" class="spotlight-link active" data-index="0"><i class="ti ti-home"></i> <span class="link-text">Home</span></a></li>
+        <li><a href="#store" class="spotlight-link" data-index="1"><i class="ti ti-shopping-cart"></i> <span class="link-text">Store</span></a></li>
+        <li><a href="#policies" class="spotlight-link" data-index="2"><i class="ti ti-file-text"></i> <span class="link-text">Policies</span></a></li>
+        <li><a href="cart.html" class="spotlight-link" data-index="3"><i class="ti ti-basket"></i> <span class="link-text">Cart</span> <span class="cart-badge-nav" aria-label="Cart items">0</span></a></li>
       </ul>
       <div class="spotlight-glow" id="spotlightGlow"></div>
       <div class="spotlight-ambience" id="spotlightAmbience"></div>
@@ -118,7 +119,7 @@
   </section>
 
   <!-- WELCOME / ABOUT SECTION -->
-  <section class="welcome-section" id="welcome" style="position:relative;overflow:hidden;">
+  <section class="welcome-section" id="welcome">
     <div class="dots-bg" aria-hidden="true"></div>
     <div class="welcome-container reveal">
       <div class="welcome-header">
@@ -222,10 +223,10 @@
         <nav class="sidebar-nav">
           <div class="sidebar-indicator"></div>
           <a href="/store/ranks" class="sidebar-link" data-category="Ranks" data-category-path="ranks">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-crown" style="vertical-align:middle;margin-right:4px;"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6" /></svg> Ranks
+            <svg class="icon icon-tabler icons-tabler-outline icon-tabler-crown sidebar-icon" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4l4 -6" /></svg> Ranks
           </a>
           <a href="/store/epix-dust" class="sidebar-link" data-category="Epix Dust" data-category-path="epix-dust">
-            <img src="assets/images/coin.png" alt="" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;"> Epix Dust
+            <img src="assets/images/coin.png" alt="" class="sidebar-coin"> Epix Dust
           </a>
           <a href="/store/crates" class="sidebar-link" data-category="Crates" data-category-path="crates">
             <i class="ti ti-key"></i> Crates
@@ -238,15 +239,15 @@
           <div class="currency-switcher store-currency-switcher" id="currencySwitcher">
             <button class="currency-switcher-btn" type="button" aria-label="Switch currency">
               <span class="currency-switcher-current">
-                <svg class="currency-icon currency-icon-inr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg>
-                <svg class="currency-icon currency-icon-usd" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg>
+                <svg class="currency-icon currency-icon-inr" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg>
+                <svg class="currency-icon currency-icon-usd" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg>
                 <span class="currency-text">INR</span>
               </span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              <svg class="currency-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="currency-switcher-dropdown">
-              <button class="currency-option active" data-currency="INR" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg> INR</button>
-              <button class="currency-option" data-currency="USD" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg> USD</button>
+              <button class="currency-option active" data-currency="INR" type="button"><svg class="currency-icon currency-option-svg" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg> INR</button>
+              <button class="currency-option" data-currency="USD" type="button"><svg class="currency-icon currency-option-svg" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg> USD</button>
             </div>
           </div>
         </div>
@@ -259,7 +260,7 @@
               <div class="featured-card-info">
                 <h4>Oblivion</h4>
                 <p>Premium rank with exceptional value — powerful perks at an affordable price.</p>
-                <span class="featured-card-link">View Ranks <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                <span class="featured-card-link">View Ranks <svg class="svg-icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
               </div>
             </div>
             <div class="featured-card card featured-card-coin" data-featured-category="epix-dust" tabindex="0" role="button" aria-label="View Epix Dust">
@@ -267,7 +268,7 @@
               <div class="featured-card-info">
                 <h4>Epix Dust Bundles</h4>
                 <p>Get the best value on LifeSteal Epix Dust.</p>
-                <span class="featured-card-link">View Epix Dust <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                <span class="featured-card-link">View Epix Dust <svg class="svg-icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
               </div>
             </div>
           </div>
@@ -341,7 +342,7 @@
 
           <!-- Epix Dust 1 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="89-epix-dust" data-product-title="89 Epix Dust" data-product-price="0.5158" data-product-image="assets/images/coin.png" data-product-description="A small pack of 89 Epix Dust to get you started in the LifeSteal Epix Dust shop." data-product-ingame="89 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" class="package-img-coin">
             <div class="package-title">89 Epix Dust</div>
             <div class="package-price">₹49</div>
             <div class="package-actions">
@@ -351,7 +352,7 @@
 
           <!-- Epix Dust 2 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="189-epix-dust" data-product-title="189 Epix Dust" data-product-price="1.0421" data-product-image="assets/images/coin.png" data-product-description="A handy bundle of 189 Epix Dust for your LifeSteal needs." data-product-ingame="189 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" class="package-img-coin">
             <div class="package-title">189 Epix Dust</div>
             <div class="package-price">₹99</div>
             <div class="package-actions">
@@ -361,7 +362,7 @@
 
           <!-- Epix Dust 3 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="389-epix-dust" data-product-title="389 Epix Dust" data-product-price="2.0947" data-product-image="assets/images/coin.png" data-product-description="A solid amount of 389 Epix Dust — great value for regular players." data-product-ingame="389 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" class="package-img-coin">
             <div class="package-title">389 Epix Dust</div>
             <div class="package-price">₹199</div>
             <div class="package-actions">
@@ -371,7 +372,7 @@
 
           <!-- Epix Dust 4 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="799-epix-dust" data-product-title="799 Epix Dust" data-product-price="4.2" data-product-image="assets/images/coin.png" data-product-description="A large bundle of 799 Epix Dust for serious players." data-product-ingame="799 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" class="package-img-coin">
             <div class="package-title">799 Epix Dust</div>
             <div class="package-price">₹399</div>
             <div class="package-actions">
@@ -381,7 +382,7 @@
 
           <!-- Epix Dust 5 -->
           <div class="card package-card reveal" data-category="epix-dust" data-product-id="1699-epix-dust-bonus" data-product-title="1699+279 Bonus Epix Dust" data-product-price="8.4105" data-product-image="assets/images/coin.png" data-product-description="1,699 Epix Dust + 279 bonus free! The ultimate pack for the best value." data-product-ingame="1,699 + 279 bonus = 1,978 Epix Dust currency added to your LifeSteal balance. Use Epix Dust in the in-game Epix Dust shop to purchase keys, crates, perks, and exclusive items." data-product-howto="Epix Dust is automatically added to your in-game balance upon purchase. Simply join the LifeSteal gamemode and open the Epix Dust shop to start spending!">
-            <img src="assets/images/coin.png" alt="" style="width:64px;height:64px;object-fit:contain;margin-bottom:8px;">
+            <img src="assets/images/coin.png" alt="" class="package-img-coin">
             <div class="package-title">1699+279 Bonus Epix Dust</div>
             <div class="package-price">₹799</div>
             <div class="package-actions">
@@ -514,7 +515,7 @@
 
   <!-- BACK TO TOP -->
   <button id="backToTop" class="back-to-top" type="button" title="Back to Top" aria-label="Scroll to top">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m5 12 7-7 7 7"/></svg>
+    <svg class="svg-icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m5 12 7-7 7 7"/></svg>
   </button>
 
   <script src="assets/js/script.js"></script>

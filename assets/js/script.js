@@ -32,7 +32,6 @@ function initFAQAccordion() {
   });
 }
 
-// SCROLL REVEAL
 // HERO PARTICLES
 function initHeroParticles() {
   const container = document.querySelector('.hero-particles');
@@ -51,7 +50,6 @@ function initHeroParticles() {
   }
 }
 
-// ━━ HERO VIDEO ━━
 // ━━ IP COPY ━━
 function initIPCopy() {
   const el = document.getElementById('ipCopy');
@@ -256,7 +254,6 @@ function initPreloader() {
 
   const finishPreloader = () => {
     preloader.classList.add('fade-out');
-    document.body.classList.add('is-loaded');
     
     setTimeout(() => {
       preloader.remove();
@@ -275,10 +272,40 @@ function initPreloader() {
   }, 5000);
 }
 
-// ━━ SUBTLE CARD GLOW ━━
-function initCardTilt() {
-  // kept for compatibility — glow is now CSS-only
+// ━━ UI SOUND EFFECTS ━━
+let _audioCtx = null;
+function getAudioCtx() {
+  if (!_audioCtx) {
+    _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (_audioCtx.state === 'suspended') {
+    _audioCtx.resume();
+  }
+  return _audioCtx;
 }
+
+function playClickSound() {
+  try {
+    const ctx = getAudioCtx();
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1000, now);
+    osc.frequency.exponentialRampToValueAtTime(500, now + 0.03);
+    gain.gain.setValueAtTime(0.06, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+    osc.start(now);
+    osc.stop(now + 0.06);
+  } catch (_) {}
+}
+
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('button, .btn-primary, .btn-outline, .btn-cancel, .btn-text, .add-to-cart, .spotlight-link, .sidebar-link, [data-featured-category], .faq-question, .back-to-top, [onclick]');
+  if (btn) playClickSound();
+}, true);
 
 const CART_STORAGE_KEY = 'store_cart';
 const INR_EXCHANGE_RATE = 95;
@@ -523,7 +550,7 @@ function renderCartPage() {
       const qtyDisplay = dustTotal !== null ? `${dustTotal} total dust` : `x${item.quantity}`;
       return `
       <div class="summary-item-row">
-        <span class="summary-item-name">${escapeHTML(item.title)}</span>
+        <span class="summary-item-name">${escapeHTML(item.title)}${item.category === 'ranks' ? ' Rank' : ''}</span>
         <span class="summary-item-qty">${qtyDisplay}</span>
         <span class="summary-item-total">${escapeHTML(formatCurrency(item.price * item.quantity))}</span>
       </div>`;
@@ -718,6 +745,26 @@ function initPlayerCount() {
   setInterval(fetchCount, 30000);
 }
 
+// ━━ SCROLL REVEAL ━━
+function initScrollReveal() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealEls.forEach(el => observer.observe(el));
+}
+
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
@@ -725,12 +772,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initIPCopy();
   initFlipFade();
   initPreloader();
-  initCardTilt();
   initCartSystem();
   initFeaturedCards();
   initBackToTop();
   initCurrencySwitcher();
   initPlayerCount();
+  initScrollReveal();
   updateAllDisplayedPrices();
 });
 
@@ -934,8 +981,4 @@ function switchStoreTab(el, category, updateUrl = true) {
 window.addEventListener('pageshow', function(e) {
   if (e.persisted) location.reload();
 });
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   UX/UI ENHANCEMENTS
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
