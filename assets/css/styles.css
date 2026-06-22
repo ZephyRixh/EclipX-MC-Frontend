@@ -2382,11 +2382,6 @@ section { padding: 40px 5vw; position: relative; }
 }
 
 /* ━━ ANIMATED DOTS BACKGROUND ━━ */
-@keyframes dotsMove {
-  0% { background-position: 0 0; }
-  100% { background-position: 40px 40px; }
-}
-
 .dots-bg {
   position: absolute;
   inset: 0;
@@ -2394,9 +2389,6 @@ section { padding: 40px 5vw; position: relative; }
   z-index: 0;
   background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: dotsMove 12s linear infinite;
-  will-change: background-position;
-  transform: translateZ(0);
 }
 
 /* ━━ DIVIDER ━━ */
