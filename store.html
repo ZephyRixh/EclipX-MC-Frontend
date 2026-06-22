@@ -17,12 +17,18 @@
 </head>
 <body>
 
-  <div id="preloader" class="preloader">
-    <div class="preloader-content">
-      <div class="preloader-logo-wrapper">
-        <img src="assets/images/eclipxmc_logo.png" alt="EclipX MC" class="preloader-logo">
+  <!-- SKELETON LOADER -->
+  <div id="skeletonLoader" class="skeleton-loader">
+    <div class="skeleton-loader-inner">
+      <div class="skeleton skeleton-nav"></div>
+      <div style="display:flex;gap:20px;max-width:1400px;margin:100px auto 0;padding:0 5vw">
+        <div class="skeleton skeleton-sidebar" style="flex:0 0 260px"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px">
+          <div class="skeleton skeleton-title" style="width:30%;margin:0"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+        </div>
       </div>
-      <div class="preloader-spinner"></div>
     </div>
   </div>
 
@@ -60,20 +66,6 @@
     <button class="mobile-nav-toggle" type="button" aria-label="Toggle navigation">
       <i class="ti ti-menu-2"></i> Menu
     </button>
-    <div class="currency-switcher" id="currencySwitcher">
-      <button class="currency-switcher-btn" type="button" aria-label="Switch currency">
-        <span class="currency-switcher-current">
-          <svg class="currency-icon currency-icon-inr" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg>
-          <svg class="currency-icon currency-icon-usd" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg>
-          <span class="currency-text">INR</span>
-        </span>
-        <svg class="currency-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="currency-switcher-dropdown">
-        <button class="currency-option active" data-currency="INR" type="button"><svg class="currency-icon currency-option-svg" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg> INR</button>
-        <button class="currency-option" data-currency="USD" type="button"><svg class="currency-icon currency-option-svg" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg> USD</button>
-      </div>
-    </div>
     <a href="/cart" class="mobile-cart-btn" aria-label="Cart">
       <i class="fa-solid fa-cart-shopping"></i>
       <span class="mobile-cart-badge" aria-label="Cart items">0</span>
@@ -133,7 +125,7 @@
 
       <main class="store-content">
         <div class="store-filters reveal">
-          <div class="currency-switcher store-currency-switcher desktop-currency-switcher">
+          <div class="currency-switcher store-currency-switcher">
             <button class="currency-switcher-btn" type="button" aria-label="Switch currency">
               <span class="currency-switcher-current">
                 <svg class="currency-icon currency-icon-inr" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6" /><path d="M7 9l11 0" /></svg>

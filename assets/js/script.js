@@ -245,32 +245,29 @@ const Router = {
   }
 };
 
-// ━━ PRELOADER ━━
+// ━━ SKELETON LOADER ━━
 function initPreloader() {
-  const preloader = document.getElementById('preloader');
-  if (!preloader) {
-    // If no preloader, init router immediately
+  const loader = document.getElementById('skeletonLoader');
+  if (!loader) {
     Router.init();
     return;
   }
 
-  const finishPreloader = () => {
-    preloader.classList.add('fade-out');
-    
+  const finish = () => {
+    loader.style.opacity = '0';
+    loader.style.transition = 'opacity 0.4s ease';
     setTimeout(() => {
-      preloader.remove();
+      loader.remove();
       Router.init();
-    }, 1000);
+    }, 500);
   };
 
-  // Use both 'load' and a safety timeout
   window.addEventListener('load', () => {
-    setTimeout(finishPreloader, 1200);
+    setTimeout(finish, 800);
   });
 
-  // Safety timeout in case 'load' doesn't fire for some reason
   setTimeout(() => {
-    if (preloader.parentElement) finishPreloader();
+    if (loader.parentElement) finish();
   }, 5000);
 }
 
