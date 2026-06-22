@@ -922,7 +922,7 @@ section { padding: 40px 5vw; position: relative; }
 
 /* ━━ STORE LAYOUT ━━ */
 .store-section {
-  padding: 40px 5vw;
+  padding: 100px 5vw 40px;
   max-width: 1400px;
   margin: 0 auto;
 }
