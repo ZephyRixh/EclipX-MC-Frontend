@@ -2512,14 +2512,24 @@ section { padding: 40px 5vw; position: relative; }
 }
 
 .skeleton-logo {
-  width: 80px;
+  width: 260px;
   height: 80px;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 .skeleton-btn {
   height: 44px;
   border-radius: 12px;
+}
+
+.skeleton-pill {
+  height: 32px;
+  border-radius: 20px;
+}
+
+.skeleton-badge {
+  height: 36px;
+  border-radius: 20px;
 }
 
 /* Modal Styles */
