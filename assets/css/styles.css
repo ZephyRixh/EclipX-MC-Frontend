@@ -3432,19 +3432,19 @@ section { padding: 40px 5vw; position: relative; }
 
 @media (max-width: 480px) {
   .spotlight-link {
-    padding: 4px 6px;
-    font-size: 10px;
-    gap: 3px;
+    padding: 6px 10px;
+    font-size: 13px;
+    gap: 5px;
   }
   .spotlight-link i {
-    font-size: 13px;
+    font-size: 16px;
   }
   .spotlight-nav {
-    height: 36px;
+    height: 46px;
   }
   .spotlight-nav-list {
-    gap: 2px;
-    padding: 0 2px;
+    gap: 4px;
+    padding: 0 6px;
   }
 }
 
