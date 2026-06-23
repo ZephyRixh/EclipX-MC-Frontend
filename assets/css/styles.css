@@ -574,7 +574,7 @@ section { padding: 40px 5vw; position: relative; }
 }
 @media (max-width: 480px) {
   .hero {
-    background-position: center center;
+    background-position: center calc(50% - 10px);
   }
 }
 .hero-content {
