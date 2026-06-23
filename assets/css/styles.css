@@ -595,7 +595,7 @@ section { padding: 40px 5vw; position: relative; }
   50% { transform: scale(1.05); }
 }
 .hero-subtitle {
-  font-family: var(--font);
+  font-family: var(--font-display);
   font-size: clamp(16px, 2.5vw, 28px);
   color: #fff;
   margin-top: 8vh;
@@ -2225,12 +2225,11 @@ section { padding: 40px 5vw; position: relative; }
   text-align: center;
 }
 .welcome-body p {
+  font-family: var(--font);
   color: var(--text-2);
   line-height: 1.7;
   margin-bottom: 20px;
   font-size: 15px;
-  font-family: var(--font-display);
-  font-weight: 800;
 }
 
 /* ━━ FOOTER (footer-13 inspired) ━━ */
@@ -2434,6 +2433,27 @@ section { padding: 40px 5vw; position: relative; }
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.skeleton-desktop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-mobile {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .skeleton-desktop {
+    display: none;
+  }
+  .skeleton-mobile {
+    display: flex;
+  }
 }
 .skeleton {
   position: relative;
@@ -3404,15 +3424,12 @@ section { padding: 40px 5vw; position: relative; }
 /* ━━ MOBILE SIDEBAR ━━ */
 .mobile-nav-bar {
   display: none;
-  position: fixed;
+  position: sticky;
   top: 12px;
-  left: 12px;
-  right: 12px;
+  margin: 0 12px;
   z-index: 1001;
   justify-content: space-between;
   pointer-events: none;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 
 .mobile-nav-toggle {
