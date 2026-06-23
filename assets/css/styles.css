@@ -3430,6 +3430,12 @@ section { padding: 40px 5vw; position: relative; }
   z-index: 1001;
   justify-content: space-between;
   pointer-events: none;
+  background: rgba(13, 13, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .mobile-nav-toggle {
