@@ -574,7 +574,7 @@ section { padding: 40px 5vw; position: relative; }
 }
 @media (max-width: 480px) {
   .hero {
-    background-position: center calc(50% - 10px);
+    background-position: center center;
   }
 }
 .hero-content {
@@ -3429,12 +3429,15 @@ section { padding: 40px 5vw; position: relative; }
 /* ━━ MOBILE SIDEBAR ━━ */
 .mobile-nav-bar {
   display: none;
-  position: sticky;
+  position: fixed;
   top: 12px;
-  margin: 0 12px;
+  left: 12px;
+  right: 12px;
   z-index: 1001;
   justify-content: space-between;
   pointer-events: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .mobile-nav-toggle {
