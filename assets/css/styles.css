@@ -572,8 +572,10 @@ section { padding: 40px 5vw; position: relative; }
     background-position: calc(50% - 10px) center;
   }
   .welcome-section {
-    background: url(../images/background2.jpg) center/cover no-repeat;
+    background-image: url(../images/background2.jpg);
+    background-size: cover;
     background-position: calc(50% - 10px) center;
+    background-repeat: no-repeat;
   }
 }
 @media (max-width: 480px) {
@@ -581,7 +583,11 @@ section { padding: 40px 5vw; position: relative; }
     background-position: center center;
   }
   .welcome-section {
-    background: url(../images/background2.jpg) center/cover no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  .welcome-section::after {
+    height: 60px;
   }
 }
 .hero-content {
@@ -2202,8 +2208,10 @@ section { padding: 40px 5vw; position: relative; }
   padding: 20px 5vw;
   width: 100%;
   overflow: hidden;
-  background: url(../images/background2.jpg) center/110% auto no-repeat;
+  background-image: url(../images/background2.jpg);
+  background-repeat: no-repeat;
   background-position: calc(50% - 20px) center;
+  background-size: 110% auto;
 }
 .welcome-section::before {
   content: '';
