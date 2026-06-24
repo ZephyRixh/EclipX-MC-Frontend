@@ -590,7 +590,7 @@ section { padding: 40px 5vw; position: relative; }
     background-position: center center;
   }
   .hero::before {
-    clip-path: none;
+    clip-path: inset(60px 0 0 0);
   }
   .welcome-section {
     background-size: cover;
