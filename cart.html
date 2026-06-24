@@ -108,7 +108,17 @@
     </header>
     <nav>
       <a href="/"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="/store"><i class="fa-solid fa-store"></i> Store</a>
+      <div class="mobile-sidebar-group">
+        <button class="mobile-sidebar-group-toggle" type="button">
+          <i class="fa-solid fa-store"></i> Store
+          <i class="ti ti-chevron-down"></i>
+        </button>
+        <div class="mobile-sidebar-sub">
+          <a href="/store/ranks"><i class="fa-solid fa-crown"></i> Ranks</a>
+          <a href="/store/epix-dust"><i class="fa-solid fa-gem"></i> Epix Dust</a>
+          <a href="/store/previews"><i class="fa-solid fa-eye"></i> Previews</a>
+        </div>
+      </div>
       <a href="/vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a>
       <a href="/policies"><i class="fa-solid fa-file-contract"></i> Policies</a>
       <a href="/cart" class="active"><i class="fa-solid fa-cart-shopping"></i> Cart</a>

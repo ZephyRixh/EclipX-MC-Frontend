@@ -793,6 +793,19 @@ function initMobileSidebar() {
   if (closeBtn) closeBtn.addEventListener('click', close);
   overlay.addEventListener('click', close);
   links.forEach(link => link.addEventListener('click', close));
+
+  const groupToggles = sidebar.querySelectorAll('.mobile-sidebar-group-toggle');
+  groupToggles.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const group = btn.closest('.mobile-sidebar-group');
+      if (!group) return;
+      const sub = group.querySelector('.mobile-sidebar-sub');
+      if (!sub) return;
+      const isOpen = sub.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    });
+  });
 }
 
 // HOVER DETECTION FOR TOUCH DEVICES
