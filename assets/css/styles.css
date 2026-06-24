@@ -599,6 +599,12 @@ section { padding: 40px 5vw; position: relative; }
     background-position: center top;
     background-repeat: no-repeat;
   }
+  .vote-section {
+    background: url(../images/background-vote.jpg) center/cover no-repeat;
+  }
+  .faq {
+    background: url(../images/background-faq.jpg) center/cover no-repeat;
+  }
 
   .welcome-section::after {
     height: 60px;
