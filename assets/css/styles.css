@@ -579,8 +579,9 @@ section { padding: 40px 5vw; position: relative; }
   }
   .welcome-section {
     background-image: url(../images/background2.jpg);
-    background-size: cover;
-    background-position: calc(50% - 10px) center;
+    background-color: var(--bg);
+    background-size: 100% auto;
+    background-position: calc(50% - 10px) top;
     background-repeat: no-repeat;
   }
 }
@@ -593,8 +594,10 @@ section { padding: 40px 5vw; position: relative; }
     background: rgba(0,0,0,0.5);
   }
   .welcome-section {
-    background-size: cover;
-    background-position: center center;
+    background-color: var(--bg);
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
   }
 
   .welcome-section::after {
