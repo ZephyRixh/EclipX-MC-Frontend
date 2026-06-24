@@ -1,0 +1,24 @@
+{
+  "name": "eclipx-mc-frontend",
+  "version": "1.0.0",
+  "description": "Welcome to the official web repository for **EclipX MC**. This project is a modern, visually immersive landing page and store frontend designed for the EclipX Minecraft server.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "python server.py",
+    "preview": "python server.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZephyRixh/frontend-eclipxmc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZephyRixh/frontend-eclipxmc/issues"
+  },
+  "homepage": "https://github.com/ZephyRixh/frontend-eclipxmc#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
