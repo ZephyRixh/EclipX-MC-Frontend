@@ -36,7 +36,9 @@ function initFAQAccordion() {
 function initHeroParticles() {
   const container = document.querySelector('.hero-particles');
   if (!container) return;
-  for (let i = 0; i < 10; i++) {
+  const isMobile = window.innerWidth < 480 || matchMedia('(hover: none)').matches;
+  const count = isMobile ? 3 : 10;
+  for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     p.classList.add('hero-particle');
     p.style.left = Math.random() * 100 + '%';
@@ -792,6 +794,13 @@ function initMobileSidebar() {
   overlay.addEventListener('click', close);
   links.forEach(link => link.addEventListener('click', close));
 }
+
+// HOVER DETECTION FOR TOUCH DEVICES
+(function() {
+  if (!matchMedia('(hover: hover)').matches) {
+    document.documentElement.classList.add('touch-device');
+  }
+})();
 
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
