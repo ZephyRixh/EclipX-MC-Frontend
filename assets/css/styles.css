@@ -586,6 +586,7 @@ section { padding: 40px 5vw; position: relative; }
 }
 @media (max-width: 480px) {
   .hero {
+    background: url(../images/background.jpg) center/cover no-repeat;
     background-position: center center;
   }
   .hero::before {
@@ -596,6 +597,9 @@ section { padding: 40px 5vw; position: relative; }
   .welcome-section {
     background-size: cover;
     background-position: center center;
+  }
+  .welcome-section::before {
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6) 60px);
   }
   .welcome-section::after {
     height: 60px;
@@ -2104,6 +2108,10 @@ section { padding: 40px 5vw; position: relative; }
   }
   .featured-card-info h4 {
     font-size: 18px;
+  }
+  .featured-card-coin::before {
+    background-size: 18%;
+    background-position: right bottom;
   }
 }
 
