@@ -600,10 +600,16 @@ section { padding: 40px 5vw; position: relative; }
     background-repeat: no-repeat;
   }
   .vote-section {
-    background: url(../images/background-vote.jpg) center/cover no-repeat;
+    background-image: url(../images/background-vote.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   .faq {
-    background: url(../images/background-faq.jpg) center/cover no-repeat;
+    background-image: url(../images/background-faq.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .welcome-section::after {
