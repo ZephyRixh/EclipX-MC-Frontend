@@ -514,7 +514,7 @@ section { padding: 40px 5vw; position: relative; }
   padding: 0;
   backface-visibility: hidden;
   background: url(../images/background.jpg) center/cover no-repeat;
-  background-position: center center;
+  background-position: calc(50% - 10px) center;
 }
 .hero::before {
   content: '';
@@ -539,7 +539,7 @@ section { padding: 40px 5vw; position: relative; }
 @media (max-width: 768px) {
   .hero {
     background: url(../images/background.jpg) center/cover no-repeat;
-    background-position: calc(50% - 10px) center;
+  background-position: calc(50% - 25px) center;
   }
 }
 @media (max-width: 480px) {
@@ -569,6 +569,7 @@ section { padding: 40px 5vw; position: relative; }
   height: auto;
   margin: 0 auto;
   position: relative;
+  left: -10px;
   filter: drop-shadow(0 0 60px rgba(255,255,255,0.15));
   animation: heroScale 6s ease-in-out infinite;
 }
